@@ -6,15 +6,15 @@ import NavigationBar from '@/components/layout/navigationBar.vue';
 </script>
 
 <template>
-  <div class="bg-white">
-    <div class="max-w-[1920px] m-auto flex">
+  <div class="bg-[#141414] min-h-screen">
+    <div class="max-w-[1920px m-auto flex">
       <div class="w-[130px] h-screen p-3 sticky top-0 overflow-hidden hidden sm:block">
         <Sidebar />
       </div>
       <div class="sm:hidden">
         <NavigationBar />
       </div>
-      <div class="route w-full p-5 pt-8 sm:pt-14">
+      <div class="route w-full sm:p-5 sm:pt-8">
         <hero class="mb-10" />
         <RouterView />
       </div>

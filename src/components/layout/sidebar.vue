@@ -40,8 +40,8 @@ const isActiveRoute = (path) => {
 </script>
 
 <template>
-  <div class="sidebar pt-8 h-full rounded-3xl bg-black text-white shadow-lg shadow-black">
-    <div class="pb-5 text-2xl text-center font-extrabold">F.</div>
+  <div class="sidebar pt-8 h-full rounded-3xl bg-black shadow-lg shadow-black">
+    <div class="pb-5 text-2xl text-center text-white font-extrabold">F.</div>
     <ul class="admin-list mt-10 flex flex-col items-center gap-12">
       <li v-for="(route, index) in routes" :key="index">
         <router-link :to="route.path" :class="{ active: isActiveRoute(route.path) }">

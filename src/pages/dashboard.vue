@@ -1,9 +1,14 @@
-<script setup></script>
+<script setup>
+import Balans from '@/views/dashboard/balans.vue'
+import DashMain from '@/views/dashboard/dashMain.vue'
+</script>
 
 <template>
-  <div>
-    <h1>dashboard</h1>
+  <div class="text-white">
+    <Balans />
   </div>
+  <!-- body -->
+  <DashMain />
 </template>
 
 <style></style>

@@ -1,8 +1,8 @@
 import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
 import router from '@/router'
-import { useTokenStore } from '../auth/token'
-import { useUrlStore } from './url'
+import { useTokenStore } from '@/stores/auth/token'
+import { useUrlStore } from '@/stores/api/url'
 
 export const useApiStore = defineStore('api', () => {
   const { url } = storeToRefs(useUrlStore())
