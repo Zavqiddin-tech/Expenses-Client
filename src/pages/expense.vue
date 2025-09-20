@@ -34,14 +34,14 @@ const handleFiles = (event) => {
   }
 }
 const add = () => {
-  console.log(state)
-  return
   formData.append('title', state.title)
   formData.append('body', state.body)
+  formData.append('amount', state.amount)
+  formData.append('category', state.category)
 
   api
     .postFormData({
-      url: 'post/create',
+      url: 'expenses/create',
       data: formData,
     })
     .then((res) => {
@@ -54,7 +54,7 @@ const add = () => {
 onMounted(() => {
   api
     .getAxios({
-      url: 'category/get-all',
+      url: 'category/getAll',
     })
     .then((res) => {
       category.value = [...res.data]
@@ -64,7 +64,7 @@ onMounted(() => {
 
 <template>
   <div class="p-8 text-white">
-    <div class="text-center text-lg font-semibold">To'lovlar</div>
+    <div class="pb-10 text-center text-lg font-semibold">To'lovlar</div>
     <form @submit.prevent="add">
       <FormField name="title">
         <FormItem>

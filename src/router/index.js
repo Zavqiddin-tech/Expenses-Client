@@ -33,6 +33,11 @@ const router = createRouter({
           component: () => import('../pages/messages.vue'),
           meta: { secure: true },
         },
+        {
+          path: '/invest/:id',
+          component: () => import('../views/invest/oneInvest.vue'),
+          meta: { secure: true },
+        },
       ],
     },
     {

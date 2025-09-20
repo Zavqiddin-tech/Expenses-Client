@@ -1,5 +1,8 @@
 <script setup>
 import cookies from 'vue-cookies'
+import { storeToRefs } from 'pinia'
+import { useStateStore } from '@/stores/state'
+const { user } = storeToRefs(useStateStore())
 
 // shadcn
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -9,11 +12,6 @@ const LogOut = () => {
   cookies.remove('build-token')
   location.reload()
 }
-
-window.addEventListener('scroll', function () {
-  let header = document.querySelector('.mobile')
-  header.classList.toggle('m-scrolled', window.scrollY > 50)
-})
 </script>
 
 <template>
@@ -23,7 +21,7 @@ window.addEventListener('scroll', function () {
       class="w-full h-40 p-5 flex justify-between items-center relative bg-white text-black rounded-2xl"
     >
       <div>
-        <div class="text-xl font-bold capitalize">hello, Zavqi !</div>
+        <div class="text-xl font-bold capitalize">hello, {{ user.fName }}!</div>
         <div class="pt-2 text-xs font-medium">Kirim, chiqimlar shu yerda.</div>
       </div>
       <div>
@@ -44,21 +42,23 @@ window.addEventListener('scroll', function () {
           <div
             class="w-12 h-12 flex justify-center items-center rounded-xl cursor-pointer bg-[#72B562] text-white"
           >
-            <span>ZE</span>
+            <span class="uppercase">{{ user.fName[0] }}{{ user.lName[0] }}</span>
           </div>
         </PopoverTrigger>
         <PopoverContent class="bg-black/40 text-white backdrop-blur border-white/30">
           <div>
-            <div class="pb-2 text-center capitalize">Zavqiddin</div>
+            <div class="pb-2 text-center capitalize">{{ user.fName }}</div>
             <div
               class="w-12 h-12 m-auto mb-2 rounded-full flex justify-center items-center text-xl font-semibold capitalize text-white bg-[#72B562]"
             >
-              Z
+              {{ user.fName[0] }}
             </div>
-            <div class="text-center capitalize">Zavqiddin Ergashov</div>
-            <div class="px-3 py-2 text-base hover:bg-black/10 rounded-md">@ zavqi</div>
+            <div class="text-center capitalize">{{ user.fName }} {{ user.lName }}</div>
+            <div class="px-3 py-2 text-base hover:bg-black/10 rounded-md">
+              @ {{ user.userName }}
+            </div>
             <div class="px-3 py-2 hover:bg-black/10 rounded-md">
-              <i class="fa-regular fa-circle-user"></i> admin
+              <i class="fa-regular fa-circle-user"></i> {{ user.role }}
             </div>
           </div>
           <div @click="LogOut()" class="px-3 py-2 hover:bg-black/10 rounded-md cursor-pointer">
@@ -69,28 +69,30 @@ window.addEventListener('scroll', function () {
     </div>
   </div>
   <!-- mobile -->
-  <div class="mobile sm:hidden sticky top-0 p-5 pb-2 transition-color duration-700 ease-in-out">
+  <div class="mobile sm:hidden sticky top-0 p-1 bg-[#141414]">
     <div class="flex justify-between items-center">
       <Popover>
         <PopoverTrigger>
           <div
-            class="w-10 h-10 flex justify-center items-center rounded-xl cursor-pointer text-white bg-[#72B562]"
+            class="w-12 h-12 flex justify-center items-center rounded-full cursor-pointer bg-[#72B562] text-white"
           >
-            <span>ZE</span>
+            <span class="uppercase">{{ user.fName[0] }}{{ user.lName[0] }}</span>
           </div>
         </PopoverTrigger>
         <PopoverContent class="bg-black/40 text-white backdrop-blur border-white/30">
           <div>
-            <div class="pb-2 text-center capitalize">Zavqiddin</div>
+            <div class="pb-2 text-center capitalize">{{ user.fName }}</div>
             <div
-              class="w-12 h-12 m-auto mb-2 rounded-full flex justify-center items-center text-xl font-semibold capitalize text-white bg-lime-500"
+              class="w-12 h-12 m-auto mb-2 rounded-full flex justify-center items-center text-xl font-semibold capitalize text-white bg-[#72B562]"
             >
-              Z
+              {{ user.fName[0] }}
             </div>
-            <div class="text-center capitalize">Zavqiddin Ergashov</div>
-            <div class="px-3 py-2 text-base hover:bg-black/10 rounded-md">@ zavqi</div>
+            <div class="text-center capitalize">{{ user.fName }} {{ user.lName }}</div>
+            <div class="px-3 py-2 text-base hover:bg-black/10 rounded-md">
+              @ {{ user.userName }}
+            </div>
             <div class="px-3 py-2 hover:bg-black/10 rounded-md">
-              <i class="fa-regular fa-circle-user"></i> admin
+              <i class="fa-regular fa-circle-user"></i> {{ user.role }}
             </div>
           </div>
           <div @click="LogOut()" class="px-3 py-2 hover:bg-black/10 rounded-md cursor-pointer">

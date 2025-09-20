@@ -13,40 +13,55 @@ import {
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import CategoryInvest from '@/views/invest/categoryInvest.vue'
+import TranzaksiyaInvest from './tranzaksiyaInvest.vue'
 
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useApiStore } from '@/stores/api/api'
 import { useStateStore } from '@/stores/state'
 const api = useApiStore()
-const { invest } = storeToRefs(useStateStore())
+const { oneInvest } = storeToRefs(useStateStore())
 
+const { id } = useRoute().params
+const name = ref('')
 const state = ref({
-  name: '',
+  amount: '',
+  text: ''
 })
 
 const cancel = () => {
-  state.value.name = ''
+  state.value.amount = ''
+  state.value.text = ''
 }
 const add = () => {
   console.log(state)
   api
     .postAxios({
-      url: 'categoryInvest/create',
+      url: `invest/create/${id}`,
       data: state.value,
     })
     .then((res) => {
-      console.log(res.data)
-      invest.value = [...invest.value, res.data]
+      console.log(res.data.pay)
+      oneInvest.value = [res.data.pay, ...oneInvest.value]
     })
-  state.value.name = ''
+  state.value.amount = ''
+  state.value.text = ''
 }
+onMounted(() => {
+  api
+    .getAxios({
+      url: `categoryInvest/getOne/${id}`,
+    })
+    .then((res) => {
+      name.value = res.data.name
+    })
+})
 </script>
 
 <template>
   <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
-    <div class="text-sm sm:text-lg text-white">Investitsiya, bo'limlar</div>
+    <div class="text-sm sm:text-lg capitalize text-white">{{ name }}</div>
     <div>
       <AlertDialog>
         <AlertDialogTrigger>
@@ -54,14 +69,22 @@ const add = () => {
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Investitsiya uchun bo'lim</AlertDialogTitle>
+            <AlertDialogTitle>Investitsiya qilish</AlertDialogTitle>
             <AlertDialogDescription>
               <form @submit.prevent="add">
                 <FormField name="price">
                   <FormItem class="mt-5">
-                    <FormLabel>Nom kiriting</FormLabel>
+                    <FormLabel>Necha pul</FormLabel>
                     <FormControl>
-                      <Input type="text" autocomplete="off" v-model="state.name" />
+                      <Input type="number" autocomplete="off" v-model="state.amount" />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <FormField name="price">
+                  <FormItem class="mt-5">
+                    <FormLabel>Ma'lumot</FormLabel>
+                    <FormControl>
+                      <Input type="text" autocomplete="off" v-model="state.text" />
                     </FormControl>
                   </FormItem>
                 </FormField>
@@ -76,7 +99,7 @@ const add = () => {
             >
             <AlertDialogAction
               class="cursor-pointer"
-              :disabled="state.name ? false : true"
+              :disabled="state.amount && state.text ? false : true"
               @click="add"
               >Continue</AlertDialogAction
             >
@@ -85,7 +108,7 @@ const add = () => {
       </AlertDialog>
     </div>
   </div>
-  <CategoryInvest />
+  <TranzaksiyaInvest />
 </template>
 
 <style></style>

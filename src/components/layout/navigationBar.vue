@@ -23,11 +23,6 @@ const routes = [
     path: '/messages',
     icon: 'fa-regular fa-comment-dots',
   },
-  {
-    name: 'Sozlamalar',
-    path: '/signin',
-    icon: 'fa-solid fa-gear',
-  },
 ]
 
 // Hozirgi marshrutni olish

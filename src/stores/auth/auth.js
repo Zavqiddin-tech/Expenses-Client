@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia'
 import { useApiStore } from '@/stores/api/api'
 import { useTokenStore } from '@/stores/auth/token'
+import { useStateStore } from '../state'
 import cookies from 'vue-cookies'
 import router from '@/router'
 
 export const useAuthStore = defineStore('auth', () => {
   const api = useApiStore()
   const tokenStore = useTokenStore()
+  const state = useStateStore()
 
   const regis = async (data) => {
     await api
@@ -43,7 +45,7 @@ export const useAuthStore = defineStore('auth', () => {
         url: 'auth/checkuser',
       })
       .then((res) => {
-        console.log(res.data)
+        state.user = {...res.data}
       })
   }
   const checkAdmin = async () => {

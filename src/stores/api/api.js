@@ -1,5 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
+import { toast } from 'vue-sonner'
 import router from '@/router'
 import { useTokenStore } from '@/stores/auth/token'
 import { useUrlStore } from '@/stores/api/url'
@@ -16,22 +17,49 @@ export const useApiStore = defineStore('api', () => {
       .catch((e) => {
         if (e.response.status == 401) {
           router.push('/auth')
+          toast('Boshqatdan kiring', {
+            description: e?.response?.data?.message,
+            action: {
+              label: 'yopish',
+              onClick: () => console.log('Undo'),
+            },
+          })
           return false
         }
+        toast('Xatolik', {
+          description: e?.response?.data?.message,
+          action: {
+            label: 'yopish',
+            onClick: () => console.log('Undo'),
+          },
+        })
       })
   }
 
   const postAxios = (payload) => {
+    console.log(payload)
     return axios
       .post(`${url.value}/${payload.url}`, payload.data, {
         headers: { Authorization: `Bearer ${tokenStore.token}` },
       })
       .catch((e) => {
         if (e.response.status == 401) {
+          router.push('/auth')
+          toast('Boshqatdan kiring', {
+            description: e?.response?.data?.message,
+            action: {
+              label: 'yopish',
+              onClick: () => console.log('Undo'),
+            },
+          })
+          return false
         }
-        toast({
-          title: 'Ogohlantirish',
-          description: e?.response?.data?.message,
+        toast(e?.response?.data?.message, {
+          description: "tekshirib ko'ring",
+          action: {
+            label: 'yopish',
+            onClick: () => console.log('Undo'),
+          },
         })
       })
   }
@@ -41,7 +69,26 @@ export const useApiStore = defineStore('api', () => {
       .put(`${url.value}/${payload.url}`, payload.data, {
         headers: { Authorization: `Bearer ${tokenStore.token}` },
       })
-      .catch((e) => {})
+      .catch((e) => {
+        if (e.response.status == 401) {
+          router.push('/auth')
+          toast('Boshqatdan kiring', {
+            description: e?.response?.data?.message,
+            action: {
+              label: 'yopish',
+              onClick: () => console.log('Undo'),
+            },
+          })
+          return false
+        }
+        toast('Xatolik', {
+          description: e?.response?.data?.message,
+          action: {
+            label: 'yopish',
+            onClick: () => console.log('Undo'),
+          },
+        })
+      })
   }
 
   const patchAxios = (payload) => {
@@ -49,7 +96,26 @@ export const useApiStore = defineStore('api', () => {
       .patch(`${url.value}/${payload.url}`, payload.data, {
         headers: { Authorization: `Bearer ${tokenStore.token}` },
       })
-      .catch((e) => {})
+      .catch((e) => {
+        if (e.response.status == 401) {
+          router.push('/auth')
+          toast('Boshqatdan kiring', {
+            description: e?.response?.data?.message,
+            action: {
+              label: 'yopish',
+              onClick: () => console.log('Undo'),
+            },
+          })
+          return false
+        }
+        toast('Xatolik', {
+          description: e?.response?.data?.message,
+          action: {
+            label: 'yopish',
+            onClick: () => console.log('Undo'),
+          },
+        })
+      })
   }
 
   const deleteAxios = (payload) => {
@@ -57,7 +123,26 @@ export const useApiStore = defineStore('api', () => {
       .delete(`${url.value}/${payload.url}`, {
         headers: { Authorization: `Bearer ${tokenStore.token}` },
       })
-      .catch((e) => {})
+      .catch((e) => {
+        if (e.response.status == 401) {
+          router.push('/auth')
+          toast('Boshqatdan kiring', {
+            description: e?.response?.data?.message,
+            action: {
+              label: 'yopish',
+              onClick: () => console.log('Undo'),
+            },
+          })
+          return false
+        }
+        toast('Xatolik', {
+          description: e?.response?.data?.message,
+          action: {
+            label: 'yopish',
+            onClick: () => console.log('Undo'),
+          },
+        })
+      })
   }
 
   const postFormData = (payload) => {
@@ -70,10 +155,22 @@ export const useApiStore = defineStore('api', () => {
       })
       .catch((e) => {
         if (e.response.status == 401) {
+          router.push('/auth')
+          toast('Boshqatdan kiring', {
+            description: e?.response?.data?.message,
+            action: {
+              label: 'yopish',
+              onClick: () => console.log('Undo'),
+            },
+          })
+          return false
         }
-        toast({
-          title: 'Ogohlantirish',
+        toast('Xatolik', {
           description: e?.response?.data?.message,
+          action: {
+            label: 'yopish',
+            onClick: () => console.log('Undo'),
+          },
         })
       })
   }
@@ -84,6 +181,6 @@ export const useApiStore = defineStore('api', () => {
     putAxios,
     patchAxios,
     deleteAxios,
-    postFormData
+    postFormData,
   }
 })
