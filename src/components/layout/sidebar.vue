@@ -14,8 +14,8 @@ const routes = [
     icon: 'fa-solid fa-chart-simple',
   },
   {
-    name: 'expense',
-    path: '/expense',
+    name: 'expenses',
+    path: '/expenses',
     icon: 'fa-solid fa-money-bill-trend-up',
   },
   {

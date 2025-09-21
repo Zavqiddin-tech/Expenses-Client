@@ -22,9 +22,9 @@ const router = createRouter({
           meta: { secure: true },
         },
         {
-          path: '/expense',
-          name: 'expense',
-          component: () => import('../pages/expense.vue'),
+          path: '/expenses',
+          name: 'expenses',
+          component: () => import('../pages/expenses.vue'),
           meta: { secure: true },
         },
         {
@@ -36,6 +36,16 @@ const router = createRouter({
         {
           path: '/invest/:id',
           component: () => import('../views/invest/oneInvest.vue'),
+          meta: { secure: true },
+        },
+        {
+          path: '/expenses/:departmentId/:name',
+          component: () => import('../views/expenses/oneDepartmentExpenses.vue'),
+          meta: { secure: true },
+        },
+        {
+          path: '/oneCategoryExpenses/:categoryId/:name',
+          component: () => import('../views/expenses/oneCategoryExpenses.vue'),
           meta: { secure: true },
         },
       ],

@@ -15,7 +15,7 @@ const routes = [
   },
   {
     name: "To'lov",
-    path: '/expense',
+    path: '/expenses',
     icon: 'fa-solid fa-money-bill-trend-up',
   },
   {

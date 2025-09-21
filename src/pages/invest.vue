@@ -46,7 +46,7 @@ const add = () => {
 
 <template>
   <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
-    <div class="text-sm sm:text-lg text-white">Investitsiya, bo'limlar</div>
+    <div class="text-sm sm:text-lg text-white">Investitsiya, bo'limlari</div>
     <div>
       <AlertDialog>
         <AlertDialogTrigger>
@@ -78,7 +78,7 @@ const add = () => {
               class="cursor-pointer"
               :disabled="state.name ? false : true"
               @click="add"
-              >Continue</AlertDialogAction
+              >Davom etish</AlertDialogAction
             >
           </AlertDialogFooter>
         </AlertDialogContent>

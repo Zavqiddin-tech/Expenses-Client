@@ -42,7 +42,7 @@ onMounted(() => {
         <div>
           <div class="text-sm font-light text-white">{{ item.text }}</div>
           <div class="pt-1 font-medium text-green-400">
-            +{{ item.amount.toLocaleString() }}
+            + {{ item.amount.toLocaleString() }}
             <span class="text-white text-xs font-light">so'm</span>
           </div>
         </div>

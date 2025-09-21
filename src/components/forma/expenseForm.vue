@@ -1,16 +1,7 @@
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
+import { reactive } from 'vue'
 import { Button } from '@/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 
@@ -20,10 +11,8 @@ const api = useApiStore()
 const state = reactive({
   title: '',
   body: '',
-  category: '',
   amount: 0,
 })
-const category = ref([])
 const images = reactive([])
 
 const formData = new FormData()
@@ -37,7 +26,6 @@ const add = () => {
   formData.append('title', state.title)
   formData.append('body', state.body)
   formData.append('amount', state.amount)
-  formData.append('category', state.category)
 
   api
     .postFormData({
@@ -51,15 +39,7 @@ const add = () => {
   formData.delete('body')
   formData.delete('pictures')
 }
-onMounted(() => {
-  api
-    .getAxios({
-      url: 'category/getAll',
-    })
-    .then((res) => {
-      category.value = [...res.data]
-    })
-})
+
 </script>
 
 <template>
@@ -79,25 +59,6 @@ onMounted(() => {
           <FormLabel>To'liqroq</FormLabel>
           <FormControl>
             <Input type="text" autocomplete="off" v-model="state.body" />
-          </FormControl>
-        </FormItem>
-      </FormField>
-      <FormField name="category">
-        <FormItem class="mt-5">
-          <FormLabel>Kategoriya</FormLabel>
-          <FormControl>
-            <Select v-model="state.category">
-              <SelectTrigger class="w-full">
-                <SelectValue placeholder="Kategoriya" />
-              </SelectTrigger>
-              <SelectContent class="bg-black/40 text-white backdrop-blur border-white/30">
-                <SelectGroup v-if="Array.isArray(category) && category.length > 0">
-                  <SelectItem v-for="item in category" :value="item._id">
-                    {{ item.name }}
-                  </SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
           </FormControl>
         </FormItem>
       </FormField>
