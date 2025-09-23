@@ -34,10 +34,11 @@ onMounted(() => {
           v-if="item.picture.length > 0"
           class="w-10 h-10 rounded-xl flex justify-center items-center overflow-hidden"
         >
-          <img :src="`${urlImg}/${item.picture[0]}`" alt="image" />
+          <img class="w-full h-full object-cover" :src="`${urlImg}/${item.picture[0]}`" alt="image" />
         </div>
-        <div v-else class="w-10 h-10 bg-slate-500 rounded-xl flex justify-center items-center">
-          <i class="fa-solid fa-cart-arrow-down text-xl text-red-300"></i>
+        
+        <div v-else class="w-10 h-10 bg-white/20 rounded-xl flex justify-center items-center">
+          <i class="fa-solid fa-tags text-2xl text-sky-400"></i>
         </div>
         <div>
           <div class="text-sm font-light">{{ item.title }}</div>

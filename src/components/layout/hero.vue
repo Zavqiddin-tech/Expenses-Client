@@ -16,7 +16,7 @@ const LogOut = () => {
 
 <template>
   <!-- desktop -->
-  <div class="hidden sm:flex justify-between gap-10">
+  <div v-if="user.fName" class="hidden sm:flex justify-between gap-10">
     <div
       class="w-full h-40 p-5 flex justify-between items-center relative bg-white text-black rounded-2xl"
     >
@@ -42,7 +42,7 @@ const LogOut = () => {
           <div
             class="w-12 h-12 flex justify-center items-center rounded-xl cursor-pointer bg-[#72B562] text-white"
           >
-            <span class="uppercase">{{ user.fName[0] }}{{ user.lName[0] }}</span>
+            <span class="uppercase">{{ user.fName[0] }} {{ user.lName[0] }}</span>
           </div>
         </PopoverTrigger>
         <PopoverContent class="bg-black/40 text-white backdrop-blur border-white/30">
@@ -69,12 +69,12 @@ const LogOut = () => {
     </div>
   </div>
   <!-- mobile -->
-  <div class="mobile sm:hidden sticky top-0 p-1 bg-[#141414]">
+  <div v-if="user.fName" class="mobile sm:hidden sticky top-0 p-1 bg-[#141414]">
     <div class="flex justify-between items-center">
       <Popover>
         <PopoverTrigger>
           <div
-            class="w-12 h-12 flex justify-center items-center rounded-full cursor-pointer bg-[#72B562] text-white"
+            class="w-12 h-12 flex justify-center items-center rounded-xl cursor-pointer bg-[#72B562] text-white"
           >
             <span class="uppercase">{{ user.fName[0] }}{{ user.lName[0] }}</span>
           </div>

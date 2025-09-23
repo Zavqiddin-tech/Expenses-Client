@@ -10,5 +10,5 @@ export const useStateStore = defineStore('state', () => {
   const invest = ref([])
   const oneInvest = ref([])
 
-  return { user, balans, expenses, departmentExpenses, categoryExpenses,  invest, oneInvest }
+  return { user, balans, expenses, departmentExpenses, categoryExpenses, invest, oneInvest }
 })

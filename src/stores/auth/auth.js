@@ -2,13 +2,14 @@ import { defineStore } from 'pinia'
 import { useApiStore } from '@/stores/api/api'
 import { useTokenStore } from '@/stores/auth/token'
 import { useStateStore } from '../state'
+import { storeToRefs } from 'pinia'
 import cookies from 'vue-cookies'
 import router from '@/router'
 
 export const useAuthStore = defineStore('auth', () => {
   const api = useApiStore()
   const tokenStore = useTokenStore()
-  const state = useStateStore()
+  const {user} = storeToRefs(useStateStore())
 
   const regis = async (data) => {
     await api
@@ -29,7 +30,6 @@ export const useAuthStore = defineStore('auth', () => {
       })
       .then((res) => {
         if (res.data.accessToken) {
-          console.log(res.data)
           tokenStore.setToken(res.data.accessToken)
           router.push('/dashboard')
         }
@@ -45,7 +45,7 @@ export const useAuthStore = defineStore('auth', () => {
         url: 'auth/checkuser',
       })
       .then((res) => {
-        state.user = {...res.data}
+        user.value = { ...res.data }
       })
   }
   const checkAdmin = async () => {
@@ -54,7 +54,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
     await api
       .getAxios({
-        url: 'auth/check-admin',
+        url: 'auth/checkadmin',
       })
       .then((res) => {})
   }

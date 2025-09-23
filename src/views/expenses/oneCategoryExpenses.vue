@@ -27,13 +27,13 @@ const { expenses } = storeToRefs(useStateStore())
 const state = reactive({
   title: '',
   body: '',
+  pictures: [],
   amount: 0,
 })
 const images = reactive([])
-const formData = new FormData()
 const handleFiles = (event) => {
   for (let file of event.target.files) {
-    formData.append('pictures', file)
+    state.pictures.push(file)
     images.push(URL.createObjectURL(file))
   }
 }
@@ -42,12 +42,18 @@ const { categoryId, name } = useRoute().params
 const cancel = () => {
   state.title = ''
   state.body = ''
+  state.pictures = []
   state.amount = 0
   formData.delete('title')
   formData.delete('body')
+  formData.delete('amount')
   formData.delete('pictures')
 }
 const add = () => {
+  const formData = new FormData()
+  for(let img of state.pictures) {
+    formData.append('pictures', img)
+  }
   formData.append('title', state.title)
   formData.append('body', state.body)
   formData.append('amount', state.amount)
@@ -62,9 +68,11 @@ const add = () => {
     })
   state.title = ''
   state.body = ''
+  state.pictures = []
   state.amount = 0
   formData.delete('title')
   formData.delete('body')
+  formData.delete('amount')
   formData.delete('pictures')
 }
 </script>

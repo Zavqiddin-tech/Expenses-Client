@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore } from '../stores/auth/auth';
+import { useAuthStore } from '../stores/auth/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,7 +19,7 @@ const router = createRouter({
           path: '/invest',
           name: 'invest',
           component: () => import('../pages/invest.vue'),
-          meta: { secure: true },
+          meta: { secure: true, admin: true },
         },
         {
           path: '/expenses',
@@ -34,9 +34,15 @@ const router = createRouter({
           meta: { secure: true },
         },
         {
+          path: '/signin',
+          name: 'signin',
+          component: () => import('../pages/signin.vue'),
+          meta: { secure: true },
+        },
+        {
           path: '/invest/:id',
           component: () => import('../views/invest/oneInvest.vue'),
-          meta: { secure: true },
+          meta: { secure: true, admin: true },
         },
         {
           path: '/expenses/:departmentId/:name',
@@ -60,10 +66,12 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.secure) {
+    if (to.meta.admin) {
+      useAuthStore().checkAdmin()
+    }
     useAuthStore().checkUser()
   }
   next()
 })
-
 
 export default router

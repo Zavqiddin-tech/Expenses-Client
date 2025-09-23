@@ -26,8 +26,8 @@ onMounted(() => {
       class="mb-6 p-2 flex justify-between items-center rounded-lg bg-slate-800"
     >
       <div class="flex items-center gap-5 cursor-pointer" @click="router.push(`/expenses/${item._id}/${item.name}`)">
-        <div class="w-10 h-10 bg-slate-300 rounded-xl flex justify-center items-center">
-          <i class="fa-solid fa-coins text-xl text-yellow-600"></i>
+        <div class="w-10 h-10 bg-white/20 rounded-xl flex justify-center items-center">
+          <i class="fa-solid fa-link text-xl text-yellow-400"></i>
         </div>
         <div>
           <div class="text-md font-light capitalize text-white">{{ item.name }}</div>

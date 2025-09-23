@@ -26,6 +26,17 @@ export const useApiStore = defineStore('api', () => {
           })
           return false
         }
+        if (e.response.status == 403) {
+          router.push('/')
+          toast('Sizga ruxsat etilmagan !', {
+            description: e?.response?.data?.message,
+            action: {
+              label: 'yopish',
+              onClick: () => console.log('Undo'),
+            },
+          })
+          return false
+        }
         toast('Xatolik', {
           description: e?.response?.data?.message,
           action: {

@@ -25,24 +25,19 @@ const { oneInvest } = storeToRefs(useStateStore())
 
 const { id } = useRoute().params
 const name = ref('')
-const state = ref({
-  amount: '',
-  text: ''
-})
+const state = ref({})
 
 const cancel = () => {
   state.value.amount = ''
   state.value.text = ''
 }
 const add = () => {
-  console.log(state)
   api
     .postAxios({
       url: `invest/create/${id}`,
-      data: state.value,
+      data: {...state.value}
     })
     .then((res) => {
-      console.log(res.data.pay)
       oneInvest.value = [res.data.pay, ...oneInvest.value]
     })
   state.value.amount = ''
