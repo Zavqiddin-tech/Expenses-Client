@@ -63,7 +63,6 @@ const add = () => {
       data: formData,
     })
     .then((res) => {
-      console.log(res.data)
       expenses.value = [res.data, ...expenses.value]
     })
   state.title = ''

@@ -48,7 +48,6 @@ onMounted(() => {
       url: 'categoryInvest/getAll',
     })
     .then((res) => {
-      console.log(res.data)
       invest.value = [...res.data]
     })
 })

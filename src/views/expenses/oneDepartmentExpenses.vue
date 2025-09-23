@@ -33,7 +33,6 @@ const cancel = () => {
   state.value.name = ''
 }
 const add = () => {
-  console.log(state)
   api
     .postAxios({
       url: `categoryExpenses/create/${departmentId}`,

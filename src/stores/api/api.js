@@ -21,7 +21,6 @@ export const useApiStore = defineStore('api', () => {
             description: e?.response?.data?.message,
             action: {
               label: 'yopish',
-              onClick: () => console.log('Undo'),
             },
           })
           return false
@@ -32,7 +31,6 @@ export const useApiStore = defineStore('api', () => {
             description: e?.response?.data?.message,
             action: {
               label: 'yopish',
-              onClick: () => console.log('Undo'),
             },
           })
           return false
@@ -41,14 +39,12 @@ export const useApiStore = defineStore('api', () => {
           description: e?.response?.data?.message,
           action: {
             label: 'yopish',
-            onClick: () => console.log('Undo'),
           },
         })
       })
   }
 
   const postAxios = (payload) => {
-    console.log(payload)
     return axios
       .post(`${url.value}/${payload.url}`, payload.data, {
         headers: { Authorization: `Bearer ${tokenStore.token}` },
@@ -60,7 +56,6 @@ export const useApiStore = defineStore('api', () => {
             description: e?.response?.data?.message,
             action: {
               label: 'yopish',
-              onClick: () => console.log('Undo'),
             },
           })
           return false
@@ -69,7 +64,6 @@ export const useApiStore = defineStore('api', () => {
           description: "tekshirib ko'ring",
           action: {
             label: 'yopish',
-            onClick: () => console.log('Undo'),
           },
         })
       })
@@ -87,7 +81,6 @@ export const useApiStore = defineStore('api', () => {
             description: e?.response?.data?.message,
             action: {
               label: 'yopish',
-              onClick: () => console.log('Undo'),
             },
           })
           return false
@@ -96,7 +89,6 @@ export const useApiStore = defineStore('api', () => {
           description: e?.response?.data?.message,
           action: {
             label: 'yopish',
-            onClick: () => console.log('Undo'),
           },
         })
       })
@@ -114,7 +106,6 @@ export const useApiStore = defineStore('api', () => {
             description: e?.response?.data?.message,
             action: {
               label: 'yopish',
-              onClick: () => console.log('Undo'),
             },
           })
           return false
@@ -123,7 +114,6 @@ export const useApiStore = defineStore('api', () => {
           description: e?.response?.data?.message,
           action: {
             label: 'yopish',
-            onClick: () => console.log('Undo'),
           },
         })
       })
@@ -141,7 +131,6 @@ export const useApiStore = defineStore('api', () => {
             description: e?.response?.data?.message,
             action: {
               label: 'yopish',
-              onClick: () => console.log('Undo'),
             },
           })
           return false
@@ -150,7 +139,6 @@ export const useApiStore = defineStore('api', () => {
           description: e?.response?.data?.message,
           action: {
             label: 'yopish',
-            onClick: () => console.log('Undo'),
           },
         })
       })
@@ -171,7 +159,6 @@ export const useApiStore = defineStore('api', () => {
             description: e?.response?.data?.message,
             action: {
               label: 'yopish',
-              onClick: () => console.log('Undo'),
             },
           })
           return false
@@ -180,7 +167,6 @@ export const useApiStore = defineStore('api', () => {
           description: e?.response?.data?.message,
           action: {
             label: 'yopish',
-            onClick: () => console.log('Undo'),
           },
         })
       })

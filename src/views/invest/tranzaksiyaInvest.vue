@@ -28,9 +28,9 @@ const state = reactive({
   text: '',
   amount: 0,
 })
-const parse = (data) => {
-  state.text = data.text
-  state.amount = data.amount
+const parse = (text, amount) => {
+  state.text = text
+  state.amount = amount
 }
 
 const update = (payId) => {
@@ -48,6 +48,8 @@ const update = (payId) => {
         }
       })
     })
+    state.amount = 0
+    state.text = ""
 }
 
 onMounted(() => {
@@ -85,7 +87,7 @@ onMounted(() => {
         <AlertDialog>
           <AlertDialogTrigger>
             <i
-              @click="parse(item)"
+              @click="parse(item.text, item.amount)"
               class="fa-solid fa-pen-to-square text-xl text-white cursor-pointer"
             ></i>
           </AlertDialogTrigger>

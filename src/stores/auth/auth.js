@@ -18,11 +18,9 @@ export const useAuthStore = defineStore('auth', () => {
         data,
       })
       .then((res) => {
-        console.log(res.data)
       })
   }
   const login = async (data) => {
-    console.log(data)
     await api
       .postAxios({
         url: 'auth/login',

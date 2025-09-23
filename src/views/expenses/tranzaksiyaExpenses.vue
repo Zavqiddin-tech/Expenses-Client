@@ -1,5 +1,22 @@
 <script setup>
-import { onMounted } from 'vue'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
+import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+
+
+
+
+import { reactive, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { convertDate } from '@/func/date'
 import { storeToRefs } from 'pinia'
@@ -13,13 +30,43 @@ const api = useApiStore()
 const { expenses } = storeToRefs(useStateStore())
 const { urlImg } = storeToRefs(useUrlStore())
 
+const state = reactive({
+  title: '',
+  body: '',
+  pictures: [],
+  amount: 0,
+})
+const parse = (data) => {
+  state.title = data.title
+  state.body = data.body
+  state.amount = data.pay.amount
+}
+
+const update = (id) => {
+  api
+    .patchAxios({
+      url: `expenses/${id}`,
+      data: state,
+    })
+    .then((res) => {
+      expenses.value = expenses.value.map((e) => {
+        if (e._id == res.data._id) {
+          return res.data
+        } else {
+          return e
+        }
+      })
+    })
+    state.amount = 0
+    state.text = ""
+}
+
 onMounted(() => {
   api
     .getAxios({
       url: `expenses/getByCategory/${categoryId}`,
     })
     .then((res) => {
-			console.log(res.data);
       expenses.value = [...res.data]
     })
 })
@@ -51,6 +98,91 @@ onMounted(() => {
         </div>
       </div>
       <div class="text-sm text-[#bec3c8]">{{ convertDate(item.createdAt) }}</div>
+      <div>
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <i
+              @click="parse(item)"
+              class="fa-solid fa-pen-to-square text-xl text-white cursor-pointer"
+            ></i>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Investitsiya, yangilash</AlertDialogTitle>
+              <AlertDialogDescription>
+                <form @submit.prevent="update(item._id)">
+                  <FormField name="title">
+                  <FormItem class="mt-5">
+                    <FormLabel>Nom kiriting</FormLabel>
+                    <FormControl>
+                      <Input type="text" autocomplete="off" v-model="state.title" />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <FormField name="body">
+                  <FormItem class="mt-5">
+                    <FormLabel>To'liqroq ma'lumot</FormLabel>
+                    <FormControl>
+                      <Input type="text" autocomplete="off" v-model="state.body" />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <FormField name="price">
+                  <FormItem class="mt-5">
+                    <FormLabel>Narxi</FormLabel>
+                    <FormControl>
+                      <Input type="number" autocomplete="off" v-model="state.amount" />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <FormField name="picture">
+                  <div class="pt-3 flex gap-5 flex-wrap">
+                    <img
+                      v-for="(image, index) in state.images"
+                      :key="index"
+                      :src="image"
+                      alt="Preview Image"
+                      class="w-30 h-30 mt-5 object-cover rounded-2xl shadow-xl shadow-sky-300/50"
+                    />
+                  </div>
+                  <FormItem class="mt-5">
+                    <FormControl>
+                      <Label for="picture" class="w-35">
+                        <div
+                          class="p-3 border-2 border-dotted border-sky-300 rounded-xl cursor-pointer"
+                        >
+                          Rasm yuklash
+                        </div>
+                      </Label>
+                      <Input
+                        id="picture"
+                        type="file"
+                        multiple
+                        @change="handleFiles"
+                        class="hidden"
+                      />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                </form>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel
+                class="bg-red-500 text-white hover:bg-red-400 hover:text-white cursor-pointer"
+                @click="cancel"
+                >Bekor qilish</AlertDialogCancel
+              >
+              <AlertDialogAction
+                class="cursor-pointer"
+                :disabled="state.title && state.body && state.amount ? false : true"
+                @click="update(item._id)"
+                >Davom etish</AlertDialogAction
+              >
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </div>
     </div>
   </div>
 </template>

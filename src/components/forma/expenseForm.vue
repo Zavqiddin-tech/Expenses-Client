@@ -33,7 +33,6 @@ const add = () => {
       data: formData,
     })
     .then((res) => {
-      console.log(res)
     })
   formData.delete('title')
   formData.delete('body')

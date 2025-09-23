@@ -30,14 +30,12 @@ const cancel = () => {
   state.value.name = ''
 }
 const add = () => {
-  console.log(state)
   api
     .postAxios({
       url: 'categoryInvest/create',
       data: state.value,
     })
     .then((res) => {
-      console.log(res.data)
       invest.value = [...invest.value, res.data]
     })
   state.value.name = ''
