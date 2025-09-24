@@ -20,7 +20,7 @@ import { storeToRefs } from 'pinia'
 import { useApiStore } from '@/stores/api/api'
 import { useStateStore } from '@/stores/state'
 const api = useApiStore()
-const { departmentExpenses } = storeToRefs(useStateStore())
+const { user, departmentExpenses } = storeToRefs(useStateStore())
 
 const state = reactive({
   name: '',
@@ -78,8 +78,13 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div class="text-sm text-[#bec3c8]">{{ convertDate(item.createdAt) }}</div>
-      <div>
+      <div
+        @click="router.push(`/expenses/${item._id}/${item.name}`)"
+        class="text-sm text-[#bec3c8]"
+      >
+        {{ convertDate(item.createdAt) }}
+      </div>
+      <div v-if="user.role === 'admin'">
         <AlertDialog>
           <AlertDialogTrigger>
             <i

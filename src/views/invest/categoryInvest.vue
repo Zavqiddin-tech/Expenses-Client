@@ -13,7 +13,7 @@ import {
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-import {reactive, onMounted } from 'vue'
+import { reactive, onMounted } from 'vue'
 import router from '@/router'
 import { convertDate } from '@/func/date'
 import { storeToRefs } from 'pinia'
@@ -22,24 +22,25 @@ import { useStateStore } from '@/stores/state'
 const api = useApiStore()
 const { invest } = storeToRefs(useStateStore())
 
-
 const state = reactive({
-  name: ""
+  name: '',
 })
 
 const update = (id) => {
-  api.patchAxios({
-    url: `categoryInvest/${id}`,
-    data: state
-  }).then(res => {
-    invest.value = invest.value.map(e => {
-      if(e._id == res.data._id) {
-        return res.data
-      } else {
-        return e
-      }
+  api
+    .patchAxios({
+      url: `categoryInvest/${id}`,
+      data: state,
     })
-  })
+    .then((res) => {
+      invest.value = invest.value.map((e) => {
+        if (e._id == res.data._id) {
+          return res.data
+        } else {
+          return e
+        }
+      })
+    })
 }
 
 onMounted(() => {
@@ -74,11 +75,16 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div class="text-sm text-[#bec3c8]">{{ convertDate(item.createdAt) }}</div>
+      <div @click="router.push(`/invest/${item._id}`)" class="text-sm text-[#bec3c8]">
+        {{ convertDate(item.createdAt) }}
+      </div>
       <div>
         <AlertDialog>
           <AlertDialogTrigger>
-            <i @click="state.name = item.name" class="fa-solid fa-pen-to-square text-xl text-white cursor-pointer"></i>
+            <i
+              @click="state.name = item.name"
+              class="fa-solid fa-pen-to-square text-xl text-white cursor-pointer"
+            ></i>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>

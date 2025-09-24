@@ -21,7 +21,7 @@ import { storeToRefs } from 'pinia'
 import { useApiStore } from '@/stores/api/api'
 import { useStateStore } from '@/stores/state'
 const api = useApiStore()
-const { categoryExpenses } = storeToRefs(useStateStore())
+const { user, categoryExpenses } = storeToRefs(useStateStore())
 
 const { departmentId } = useRoute().params
 
@@ -48,7 +48,6 @@ const update = (id) => {
       })
     })
 }
-
 
 onMounted(() => {
   api
@@ -82,8 +81,13 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div class="text-sm text-[#bec3c8]">{{ convertDate(item.createdAt) }}</div>
-      <div>
+      <div
+        @click="router.push(`/oneCategoryExpenses/${item._id}/${item.name}`)"
+        class="text-sm text-[#bec3c8]"
+      >
+        {{ convertDate(item.createdAt) }}
+      </div>
+      <div v-if="user.role === 'admin'">
         <AlertDialog>
           <AlertDialogTrigger>
             <i

@@ -27,7 +27,7 @@ import { useStateStore } from '@/stores/state'
 const { categoryId } = useRoute().params
 
 const api = useApiStore()
-const { expenses } = storeToRefs(useStateStore())
+const { user, expenses } = storeToRefs(useStateStore())
 const { urlImg } = storeToRefs(useUrlStore())
 
 const state = reactive({
@@ -98,7 +98,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="text-sm text-[#bec3c8]">{{ convertDate(item.createdAt) }}</div>
-      <div>
+      <div v-if="user.role === 'admin'">
         <AlertDialog>
           <AlertDialogTrigger>
             <i
@@ -108,7 +108,7 @@ onMounted(() => {
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Investitsiya, yangilash</AlertDialogTitle>
+              <AlertDialogTitle>Xarajat, yangilash</AlertDialogTitle>
               <AlertDialogDescription>
                 <form @submit.prevent="update(item._id)">
                   <FormField name="title">
@@ -135,7 +135,7 @@ onMounted(() => {
                     </FormControl>
                   </FormItem>
                 </FormField>
-                <FormField name="picture">
+                <!-- <FormField name="picture">
                   <div class="pt-3 flex gap-5 flex-wrap">
                     <img
                       v-for="(image, index) in state.images"
@@ -163,7 +163,7 @@ onMounted(() => {
                       />
                     </FormControl>
                   </FormItem>
-                </FormField>
+                </FormField>  -->
                 </form>
               </AlertDialogDescription>
             </AlertDialogHeader>
@@ -175,7 +175,7 @@ onMounted(() => {
               >
               <AlertDialogAction
                 class="cursor-pointer"
-                :disabled="state.title && state.body && state.amount ? false : true"
+                :disabled="state.title && state.amount ? false : true"
                 @click="update(item._id)"
                 >Davom etish</AlertDialogAction
               >
