@@ -39,19 +39,17 @@ const handleFiles = (event) => {
 }
 const { categoryId, name } = useRoute().params
 
+let formData = new FormData()
 const cancel = () => {
+  formData = new FormData()
   state.title = ''
   state.body = ''
   state.pictures = []
   state.amount = 0
-  formData.delete('title')
-  formData.delete('body')
-  formData.delete('amount')
-  formData.delete('pictures')
 }
 const add = () => {
-  const formData = new FormData()
-  for(let img of state.pictures) {
+  formData = new FormData()
+  for (let img of state.pictures) {
     formData.append('pictures', img)
   }
   formData.append('title', state.title)

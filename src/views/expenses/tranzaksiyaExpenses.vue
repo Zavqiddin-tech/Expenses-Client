@@ -13,9 +13,6 @@ import {
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-
-
-
 import { reactive, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { convertDate } from '@/func/date'
@@ -57,8 +54,14 @@ const update = (id) => {
         }
       })
     })
-    state.amount = 0
-    state.text = ""
+  state.amount = 0
+  state.text = ''
+}
+
+const deleteItem = (id) => {
+  api.deleteAxios({ url: `expenses/${id}` }).then((res) => {
+    expenses.value = expenses.value.filter((e) => e._id !== res.data._id)
+  })
 }
 
 onMounted(() => {
@@ -84,7 +87,11 @@ onMounted(() => {
           v-if="item.picture.length > 0"
           class="w-10 h-10 rounded-xl flex justify-center items-center overflow-hidden"
         >
-          <img class="w-full h-full object-cover" :src="`${urlImg}/${item.picture[0]}`" alt="image" />
+          <img
+            class="w-full h-full object-cover"
+            :src="`${urlImg}/${item.picture[0]}`"
+            alt="image"
+          />
         </div>
         <div v-else class="w-10 h-10 bg-white/20 rounded-xl flex justify-center items-center">
           <i class="fa-solid fa-tags text-2xl text-sky-400"></i>
@@ -112,30 +119,30 @@ onMounted(() => {
               <AlertDialogDescription>
                 <form @submit.prevent="update(item._id)">
                   <FormField name="title">
-                  <FormItem class="mt-5">
-                    <FormLabel>Nom kiriting</FormLabel>
-                    <FormControl>
-                      <Input type="text" autocomplete="off" v-model="state.title" />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-                <FormField name="body">
-                  <FormItem class="mt-5">
-                    <FormLabel>To'liqroq ma'lumot</FormLabel>
-                    <FormControl>
-                      <Input type="text" autocomplete="off" v-model="state.body" />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-                <FormField name="price">
-                  <FormItem class="mt-5">
-                    <FormLabel>Narxi</FormLabel>
-                    <FormControl>
-                      <Input type="number" autocomplete="off" v-model="state.amount" />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-                <!-- <FormField name="picture">
+                    <FormItem class="mt-5">
+                      <FormLabel>Nom kiriting</FormLabel>
+                      <FormControl>
+                        <Input type="text" autocomplete="off" v-model="state.title" />
+                      </FormControl>
+                    </FormItem>
+                  </FormField>
+                  <FormField name="body">
+                    <FormItem class="mt-5">
+                      <FormLabel>To'liqroq ma'lumot</FormLabel>
+                      <FormControl>
+                        <Input type="text" autocomplete="off" v-model="state.body" />
+                      </FormControl>
+                    </FormItem>
+                  </FormField>
+                  <FormField name="price">
+                    <FormItem class="mt-5">
+                      <FormLabel>Narxi</FormLabel>
+                      <FormControl>
+                        <Input type="number" autocomplete="off" v-model="state.amount" />
+                      </FormControl>
+                    </FormItem>
+                  </FormField>
+                  <!-- <FormField name="picture">
                   <div class="pt-3 flex gap-5 flex-wrap">
                     <img
                       v-for="(image, index) in state.images"
@@ -179,6 +186,24 @@ onMounted(() => {
                 @click="update(item._id)"
                 >Davom etish</AlertDialogAction
               >
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <i class="fa-solid fa-trash text-xl text-red-500 cursor-pointer"></i>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Bu ma'lumotni o'chirib yubormoqchimisiz?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Bu harakatni bekor qilib bo'lmaydi. Bu sizning hisobingizni doimiy ravishda o'chirib
+                tashlaydi va ma'lumotlaringizni bizning serverlarimizdan olib tashlaydi.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Bekor qilish</AlertDialogCancel>
+              <AlertDialogAction @click="deleteItem(item._id)">Davom etish</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
