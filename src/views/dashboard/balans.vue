@@ -30,7 +30,7 @@ onMounted(() => {
       <span class="text-sm font-light">Sentabrdagi chiqim 0 so'm</span>
     </div>
   </div>
-  <div v-else="state._id" class="p-5 text-left">
+  <div v-else class="p-5 text-left">
     <div class="font-light">Umumiy balans</div>
     <div class="pt-3">
       <span class="font-semibold text-4xl pr-2">0</span>

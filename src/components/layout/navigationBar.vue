@@ -35,13 +35,13 @@ const isActiveRoute = (path) => {
 </script>
 
 <template>
-  <div class="sidebar w-full py-4 fixed bottom-0 z-10 bg-[#000000] text-white">
+  <div class="sidebar w-full py-4 fixed bottom-0 z-10 rounded-full bg-white/20 backdrop-blur-xs">
     <ul class="admin-list  flex justify-around items-center">
       <li v-for="(route, index) in routes" :key="index">
         <router-link :to="route.path" :class="{ active: isActiveRoute(route.path) }">
           <div class="flex flex-col items-center gap-1">
             <i :class="`${route.icon} text-[22px]`"></i>
-            <span class="text-xs font-extralight">{{ route.name }}</span>
+            <span class="text-xs font-light">{{ route.name }}</span>
           </div>
         </router-link>
       </li>
@@ -58,18 +58,18 @@ const isActiveRoute = (path) => {
 
 .sidebar ul li {
   i {
-    color: #969696;
+    color: #d3d3d3;
   }
   span {
-    color: #a0a0a0;
+    color: #d3d3d3;
   }
 }
 .sidebar ul li .active {
   i {
-    color: #ffffff;
+    color: oklch(60.6% 0.25 292.717);
   }
   span {
-    color: #ffffff;
+    color: oklch(60.6% 0.25 292.717);
   }
 }
 </style>

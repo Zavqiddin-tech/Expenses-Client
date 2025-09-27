@@ -9,7 +9,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 // func
 const LogOut = () => {
-  cookies.remove('build-token')
+  cookies.remove('metan-token')
   location.reload()
 }
 </script>
@@ -18,7 +18,7 @@ const LogOut = () => {
   <!-- desktop -->
   <div v-if="user.fName" class="hidden sm:flex justify-between gap-10">
     <div
-      class="w-full h-40 p-5 flex justify-between items-center relative bg-white text-black rounded-2xl"
+      class="w-full h-40 p-5 flex justify-between items-center relative text-white rounded-2xl bg-white/20 backdrop-blur-xs"
     >
       <div>
         <div class="text-xl font-bold capitalize">hello, {{ user.fName }}!</div>
@@ -33,23 +33,23 @@ const LogOut = () => {
       </div>
     </div>
     <div class="flex items-start gap-4">
-      <div class="pt-2 relative cursor-pointer">
+      <!-- <div class="pt-2 relative cursor-pointer">
         <i class="fa-regular fa-bell text-white text-2xl"></i>
         <div class="w-3 h-3 absolute top-1 right-0 bg-red-500 rounded-full"></div>
-      </div>
+      </div> -->
       <Popover>
         <PopoverTrigger>
           <div
-            class="w-12 h-12 flex justify-center items-center rounded-xl cursor-pointer bg-[#72B562] text-white"
+            class="w-12 h-12 flex justify-center items-center rounded-full cursor-pointer text-white bg-violet-500"
           >
-            <span class="uppercase">{{ user.fName[0] }} {{ user.lName[0] }}</span>
+            <span class="uppercase">{{ user.fName[0] }}{{ user.lName[0] }}</span>
           </div>
         </PopoverTrigger>
         <PopoverContent class="bg-black/40 text-white backdrop-blur border-white/30">
           <div>
             <div class="pb-2 text-center capitalize">{{ user.fName }}</div>
             <div
-              class="w-12 h-12 m-auto mb-2 rounded-full flex justify-center items-center text-xl font-semibold capitalize text-white bg-[#72B562]"
+              class="w-12 h-12 m-auto mb-2 rounded-full flex justify-center items-center text-xl font-semibold capitalize text-white bg-violet-500"
             >
               {{ user.fName[0] }}
             </div>
@@ -69,12 +69,16 @@ const LogOut = () => {
     </div>
   </div>
   <!-- mobile -->
-  <div v-if="user.fName" class="mobile sm:hidden sticky top-0 p-1 bg-[#141414]">
+  <div v-if="user.fName" class="mobile sm:hidden sticky top-0 p-1">
     <div class="flex justify-between items-center">
+      <div class="text-lg">
+        Hey, <span class="font-bold capitalize">{{ user.fName }} </span>
+        <span class="text-2xl">👋</span>
+      </div>
       <Popover>
         <PopoverTrigger>
           <div
-            class="w-12 h-12 flex justify-center items-center rounded-xl cursor-pointer bg-[#72B562] text-white"
+            class="w-12 h-12 flex justify-center items-center rounded-full cursor-pointer text-white bg-violet-500"
           >
             <span class="uppercase">{{ user.fName[0] }}{{ user.lName[0] }}</span>
           </div>
@@ -83,7 +87,7 @@ const LogOut = () => {
           <div>
             <div class="pb-2 text-center capitalize">{{ user.fName }}</div>
             <div
-              class="w-12 h-12 m-auto mb-2 rounded-full flex justify-center items-center text-xl font-semibold capitalize text-white bg-[#72B562]"
+              class="w-12 h-12 m-auto mb-2 rounded-full flex justify-center items-center text-xl font-semibold capitalize text-white bg-violet-500"
             >
               {{ user.fName[0] }}
             </div>
@@ -100,13 +104,6 @@ const LogOut = () => {
           </div>
         </PopoverContent>
       </Popover>
-      <div class="flex items-center gap-5 text-white">
-        <i class="fa-solid fa-magnifying-glass text-xl"></i>
-        <div class="pt-2 relative cursor-pointer">
-          <i class="fa-regular fa-bell text-2xl"></i>
-          <div class="w-3 h-3 absolute top-1 right-0 bg-red-500 rounded-full"></div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
