@@ -10,7 +10,7 @@ import NavigationBar from '@/components/layout/navigationBar.vue'
       <div class="w-[130px] h-screen p-3 sticky top-0 overflow-hidden hidden sm:block">
         <Sidebar />
       </div>
-      <div class="sm:hidden">
+      <div class=" sm:hidden">
         <NavigationBar />
       </div>
       <div class="route w-full mb-15 sm:mb-0 p-3 sm:p-5 sm:pt-8">

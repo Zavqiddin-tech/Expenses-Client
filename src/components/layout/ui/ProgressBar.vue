@@ -42,7 +42,7 @@ watch(
 
 <template>
   <div
-    class="w-full flex justify-center mt-10 px-5 py-8 rounded-4xl bg-white/20 backdrop-blur-xs"
+    class="w-full flex justify-center px-5 py-8 "
   >
     <div class="progress">
       <div class="pb-3 text-sm font-light light:text-black">Holat</div>
