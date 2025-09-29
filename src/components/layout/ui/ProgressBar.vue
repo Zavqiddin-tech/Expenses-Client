@@ -1,92 +1,86 @@
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted } from 'vue'
 
 const props = defineProps(['progress'])
 
-const displayValue = ref(0);
-const rotation = ref("rotate(45deg)"); // 0% starts at 45deg
+const displayValue = ref(0)
+const dashOffset = ref(0)
+
+const radius = 70
+const circumference = 2 * Math.PI * radius
 
 const animateProgress = () => {
-  const start = performance.now();
-  const from = 0;
-  const to = props.progress;
-  const duration = 1000;
+  const start = performance.now()
+  const from = 0
+  const to = props.progress
+  const duration = 1000
 
   const step = (timestamp) => {
-    const elapsed = timestamp - start;
-    const progressRatio = Math.min(elapsed / duration, 1);
-    const current = from + (to - from) * progressRatio;
+    const elapsed = timestamp - start
+    const progressRatio = Math.min(elapsed / duration, 1)
+    const current = from + (to - from) * progressRatio
 
-    displayValue.value = current.toFixed(2);
-    rotation.value = `rotate(${45 + current * 1.8}deg)`;
+    displayValue.value = current.toFixed(0)
+    dashOffset.value = circumference - (current / 100) * circumference
 
     if (progressRatio < 1) {
-      requestAnimationFrame(step);
+      requestAnimationFrame(step)
     }
-  };
+  }
 
-  requestAnimationFrame(step);
-};
+  requestAnimationFrame(step)
+}
 
 onMounted(() => {
-  animateProgress();
-});
+  animateProgress()
+})
 
 watch(
   () => props.progress,
   () => {
-    animateProgress();
-  }
-);
+    animateProgress()
+  },
+)
 </script>
 
 <template>
-  <div
-    class="w-full flex justify-center px-5 py-8 "
-  >
-    <div class="progress">
-      <div class="pb-3 text-sm font-light light:text-black">Holat</div>
-      <div class="barOverflow">
-        <div class="bar" :style="{ transform: rotation }"></div>
+  <div class="flex justify-center p-5">
+    <div class="relative w-40 h-40 flex items-center justify-center">
+      <!-- Orqa doira -->
+      <svg class="w-full h-full transform -rotate-90">
+        <circle
+          :r="radius"
+          :cx="80"
+          :cy="80"
+          stroke="#ffffff50"
+          stroke-width="15"
+          fill="transparent"
+        />
+        <!-- Progress doira -->
+        <circle
+          :r="radius"
+          :cx="80"
+          :cy="80"
+          stroke="#A684FF"
+          stroke-width="15"
+          fill="transparent"
+          stroke-linecap="round"
+          :stroke-dasharray="circumference"
+          :stroke-dashoffset="dashOffset"
+        />
+      </svg>
+
+      <!-- Markazdagi % -->
+      <div class="absolute flex flex-col items-center">
+        <span class="text-xl">{{ displayValue }}<i class="fa-solid fa-percent text-sm"></i></span>
+        <span class="text-sm font-light">sarflandi</span>
       </div>
-      <span v-if="displayValue >= 0" class="text-xl font-medium"
-        >{{ displayValue }} %</span
-      >
-      <span v-else class="text-xl font-medium"
-        >0 %</span
-      >
-      <div class="pt-2 text-sm font-light light:text-black">Pul sarflandi</div>
     </div>
   </div>
 </template>
 
-
-
-<style scoped>
-.progress {
-  position: relative;
-  margin: 4px;
-  text-align: center;
-  width: 150px;
-}
-.barOverflow {
-  position: relative;
-  overflow: hidden;
-  width: 150px;
-  height: 75px;
-  margin-bottom: -28px;
-}
-.bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  border: 8px solid #eee;
-  border-bottom-color: #bbf451;
-  border-right-color: #bbf451;
-  transition: transform 0.1s linear;
+<style>
+.a {
+  color: #ffffff69;
 }
 </style>

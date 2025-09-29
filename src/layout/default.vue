@@ -22,7 +22,7 @@ import NavigationBar from '@/components/layout/navigationBar.vue'
 
 <style>
 .main {
-  background-image: url('../assets/image/mobile-bg.jpg');
+  background-image: url('../assets/image/test-1.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

@@ -7,7 +7,7 @@ import DashMain from '@/views/dashboard/dashMain.vue'
 <template>
   <div>
     <Hero />
-    <div class="mt-15 mb-5 p-5 text-white rounded-4xl bg-white/20 backdrop-blur-xs">
+    <div class="mt-5 mb-5 p-5 text-white rounded-4xl bg-white/20 backdrop-blur-xs">
       <Balans />
     </div>
     <!-- body -->

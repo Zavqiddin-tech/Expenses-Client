@@ -20,7 +20,7 @@ import { storeToRefs } from 'pinia'
 import { useApiStore } from '@/stores/api/api'
 import { useStateStore } from '@/stores/state'
 const api = useApiStore()
-const { invest } = storeToRefs(useStateStore())
+const { user, invest } = storeToRefs(useStateStore())
 
 const state = ref({
   name: '',
@@ -43,47 +43,49 @@ const add = () => {
 </script>
 
 <template>
-  <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
-    <div class="text-sm sm:text-lg text-white">Investitsiya, bo'limlari</div>
-    <div>
-      <AlertDialog>
-        <AlertDialogTrigger>
-          <Button class="bg-white text-black hover:bg-white/80 cursor-pointer">Qo'shish</Button>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Investitsiya uchun bo'lim</AlertDialogTitle>
-            <AlertDialogDescription>
-              <form @submit.prevent="add">
-                <FormField name="price">
-                  <FormItem class="mt-5">
-                    <FormLabel>Nom kiriting</FormLabel>
-                    <FormControl>
-                      <Input type="text" autocomplete="off" v-model="state.name" />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-              </form>
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel
-              class="bg-red-500 text-white hover:bg-red-400 hover:text-white cursor-pointer"
-              @click="cancel"
-              >Bekor qilish</AlertDialogCancel
-            >
-            <AlertDialogAction
-              class="cursor-pointer"
-              :disabled="state.name ? false : true"
-              @click="add"
-              >Davom etish</AlertDialogAction
-            >
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+  <div v-if="user.role === 'admin' || user.role === 'director'">
+    <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
+      <div class="text-sm sm:text-lg text-white">Investitsiya, bo'limlari</div>
+      <div>
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <Button class="bg-white text-black hover:bg-white/80 cursor-pointer">Qo'shish</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Investitsiya uchun bo'lim</AlertDialogTitle>
+              <AlertDialogDescription>
+                <form @submit.prevent="add">
+                  <FormField name="price">
+                    <FormItem class="mt-5">
+                      <FormLabel>Nom kiriting</FormLabel>
+                      <FormControl>
+                        <Input type="text" autocomplete="off" v-model="state.name" />
+                      </FormControl>
+                    </FormItem>
+                  </FormField>
+                </form>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel
+                class="bg-red-500 text-white hover:bg-red-400 hover:text-white cursor-pointer"
+                @click="cancel"
+                >Bekor qilish</AlertDialogCancel
+              >
+              <AlertDialogAction
+                class="cursor-pointer"
+                :disabled="state.name ? false : true"
+                @click="add"
+                >Davom etish</AlertDialogAction
+              >
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </div>
     </div>
+    <CategoryInvest />
   </div>
-  <CategoryInvest />
 </template>
 
 <style></style>

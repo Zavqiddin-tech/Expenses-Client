@@ -1,19 +1,31 @@
 <script setup>
-import { reactive } from 'vue'
-const state = reactive({
-	userName: '',
-	password: ''
-})
-//store
-import { useAuthStore } from '../stores/auth/auth'
-const { login } = useAuthStore()
-
-//shadcn ui
 import { Button } from '@/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { toast } from 'vue-sonner'
+
+import { ref, reactive } from 'vue'
+const toggle = ref(false)
+const state = reactive({
+  userName: '',
+  password: '',
+})
+
+import { useAuthStore } from '../stores/auth/auth'
+const { login } = useAuthStore()
 
 const add = () => {
+  if (!state.userName || !state.password) {
+    toast('Ogohlantirish', {
+      description: "Iltimos, barcha maydonlarni to'ldiring",
+      action: {
+        label: 'yopish',
+      },
+    })
+    return
+  }
+  state.userName = state.userName.trim()
+  state.password = state.password.trim()
   login(state)
 }
 </script>
@@ -31,7 +43,7 @@ const add = () => {
           <FormItem>
             <FormLabel>Username</FormLabel>
             <FormControl>
-              <Input type="text" autocomplete="off"  v-model="state.userName"/>
+              <Input type="text" autocomplete="off" v-model="state.userName" />
             </FormControl>
 
             <FormMessage />
@@ -41,7 +53,17 @@ const add = () => {
           <FormItem class="mt-5">
             <FormLabel>Password</FormLabel>
             <FormControl>
-              <Input type="password" autocomplete="off" v-model="state.password"/>
+              <div class="relative">
+                <Input
+                  :type="`${toggle ? 'text' : 'password'}`"
+                  autocomplete="off"
+                  v-model="state.password"
+                />
+                <div @click="toggle = !toggle" class="absolute right-3 top-2 cursor-pointer">
+                  <i class="fa-solid fa-eye" v-if="!toggle"></i>
+                  <i class="fa-solid fa-eye-slash" v-if="toggle"></i>
+                </div>
+              </div>
             </FormControl>
 
             <FormMessage />

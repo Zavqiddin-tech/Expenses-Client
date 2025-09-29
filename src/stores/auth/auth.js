@@ -54,7 +54,9 @@ export const useAuthStore = defineStore('auth', () => {
       .getAxios({
         url: 'auth/checkadmin',
       })
-      .then((res) => {})
+      .then((res) => {
+        
+      })
   }
 
   return {

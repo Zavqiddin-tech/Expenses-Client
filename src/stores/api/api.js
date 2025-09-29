@@ -1,5 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
+import cookies from 'vue-cookies'
 import { toast } from 'vue-sonner'
 import router from '@/router'
 import { useTokenStore } from '@/stores/auth/token'
@@ -35,6 +36,18 @@ export const useApiStore = defineStore('api', () => {
           })
           return false
         }
+        if (e.response.status == 500) {
+          router.push('/auth')
+          toast('Boshqatdan kiring', {
+            description: e?.response?.data?.message,
+            action: {
+              label: 'yopish',
+            },
+          })
+          cookies.remove('metan-token')
+          return false
+        }
+        cookies.remove('metan-token')
         toast('Xatolik', {
           description: e?.response?.data?.message,
           action: {
