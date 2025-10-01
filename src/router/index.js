@@ -28,15 +28,9 @@ const router = createRouter({
           meta: { secure: true },
         },
         {
-          path: '/messages',
-          name: 'messages',
-          component: () => import('../pages/messages.vue'),
-          meta: { secure: true },
-        },
-        {
-          path: '/signin',
-          name: 'signin',
-          component: () => import('../pages/signin.vue'),
+          path: '/utility',
+          name: 'kommunal',
+          component: () => import('../pages/utility.vue'),
           meta: { secure: true },
         },
         {
@@ -52,6 +46,11 @@ const router = createRouter({
         {
           path: '/oneCategoryExpenses/:categoryId/:name',
           component: () => import('../views/expenses/oneCategoryExpenses.vue'),
+          meta: { secure: true },
+        },
+        {
+          path: '/utility/category/:categoryId/:name',
+          component: () => import('../views/utility/payment.vue'),
           meta: { secure: true },
         },
       ],

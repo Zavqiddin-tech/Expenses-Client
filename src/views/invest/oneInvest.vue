@@ -56,7 +56,7 @@ onMounted(() => {
 
 <template>
   <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
-    <div class="text-sm sm:text-lg capitalize text-white">{{ name }}</div>
+    <div class=" capitalize text-white">{{ name }}</div>
     <div>
       <AlertDialog>
         <AlertDialogTrigger>

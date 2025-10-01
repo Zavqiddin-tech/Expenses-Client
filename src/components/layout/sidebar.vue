@@ -19,14 +19,9 @@ const routes = [
     icon: 'fa-solid fa-money-bill-trend-up',
   },
   {
-    name: 'Xabarlar',
-    path: '/messages',
-    icon: 'fa-regular fa-comment-dots',
-  },
-  {
-    name: 'Sozlamalar',
-    path: '/signin',
-    icon: 'fa-solid fa-gear',
+    name: 'kommunal',
+    path: '/utility',
+    icon: 'fa-solid fa-briefcase',
   },
 ]
 
@@ -42,7 +37,7 @@ const isActiveRoute = (path) => {
 <template>
   <div class="sidebar pt-8 h-full rounded-3xl bg-white/20 backdrop-blur-xs">
     <div class="pb-5 text-2xl text-center text-white font-extrabold">Z.</div>
-    <ul class="admin-list mt-10 flex flex-col items-center gap-12">
+    <ul class="mt-10 flex flex-col items-center gap-12">
       <li v-for="(route, index) in routes" :key="index">
         <router-link :to="route.path" :class="{ active: isActiveRoute(route.path) }">
           <div class="flex items-center">
@@ -62,12 +57,12 @@ const isActiveRoute = (path) => {
   padding: 0;
 }
 
-.sidebar .admin-list li {
+/* .sidebar .admin-list li {
   &:last-child {
     position: absolute;
     bottom: 120px;
   }
-}
+} */
 
 .sidebar ul li {
   i {
@@ -76,7 +71,7 @@ const isActiveRoute = (path) => {
 }
 .sidebar ul li .active {
   i {
-   color: oklch(60.6% 0.25 292.717);
+    color: oklch(60.6% 0.25 292.717);
   }
 }
 </style>

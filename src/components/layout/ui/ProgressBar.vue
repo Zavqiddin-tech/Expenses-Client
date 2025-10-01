@@ -20,7 +20,7 @@ const animateProgress = () => {
     const progressRatio = Math.min(elapsed / duration, 1)
     const current = from + (to - from) * progressRatio
 
-    displayValue.value = current.toFixed(0)
+    displayValue.value = current.toFixed(2)
     dashOffset.value = circumference - (current / 100) * circumference
 
     if (progressRatio < 1) {

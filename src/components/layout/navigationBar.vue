@@ -19,9 +19,9 @@ const routes = [
     icon: 'fa-solid fa-money-bill-trend-up',
   },
   {
-    name: 'Xabarlar',
-    path: '/messages',
-    icon: 'fa-regular fa-comment-dots',
+    name: 'Kommunal',
+    path: '/utility',
+    icon: 'fa-solid fa-briefcase',
   },
 ]
 
@@ -35,8 +35,10 @@ const isActiveRoute = (path) => {
 </script>
 
 <template>
-  <div class="sidebar w-[95%] py-4 fixed bottom-0 left-1/2 -translate-x-1/2  z-10 rounded-full bg-white/20 backdrop-blur-xs">
-    <ul class="admin-list  flex justify-around items-center">
+  <div
+    class="sidebar w-[95%] py-4 fixed bottom-0 left-1/2 -translate-x-1/2 z-10 rounded-full bg-white/20 backdrop-blur-xs"
+  >
+    <ul class="flex justify-around items-center">
       <li v-for="(route, index) in routes" :key="index">
         <router-link :to="route.path" :class="{ active: isActiveRoute(route.path) }">
           <div class="flex flex-col items-center gap-1">

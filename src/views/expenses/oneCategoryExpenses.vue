@@ -76,7 +76,7 @@ const add = () => {
 
 <template>
   <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
-    <div class="text-sm sm:text-lg text-white">{{ name }}, xarajatlar</div>
+    <div class="text-white">{{ name }}, xarajatlar</div>
     <div>
       <AlertDialog>
         <AlertDialogTrigger>

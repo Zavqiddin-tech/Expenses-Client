@@ -15,7 +15,6 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import CategoryExpenses from './categoryExpenses.vue'
 
-
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
@@ -36,7 +35,7 @@ const add = () => {
   api
     .postAxios({
       url: `categoryExpenses/create/${departmentId}`,
-      data: state.value
+      data: state.value,
     })
     .then((res) => {
       categoryExpenses.value = [...categoryExpenses.value, res.data]
@@ -47,8 +46,7 @@ const add = () => {
 
 <template>
   <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
-		
-    <div class="text-sm sm:text-lg text-white">{{ name }}, kategoriyasi</div>
+    <div class="text-white">{{ name }}, kategoriyasi</div>
     <div>
       <AlertDialog>
         <AlertDialogTrigger>
@@ -87,7 +85,7 @@ const add = () => {
       </AlertDialog>
     </div>
   </div>
-	<CategoryExpenses />
+  <CategoryExpenses />
 </template>
 
 <style></style>

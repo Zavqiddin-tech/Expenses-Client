@@ -45,7 +45,7 @@ const add = () => {
 <template>
   <div v-if="user.role === 'admin' || user.role === 'director'">
     <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
-      <div class="text-sm sm:text-lg text-white">Investitsiya, bo'limlari</div>
+      <div class="text-white">Investitsiya, bo'limlari</div>
       <div>
         <AlertDialog>
           <AlertDialogTrigger>

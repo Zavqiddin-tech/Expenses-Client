@@ -15,7 +15,6 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import DepartmentExpenses from '@/views/expenses/departmentExpenses.vue'
 
-
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useApiStore } from '@/stores/api/api'
@@ -45,7 +44,7 @@ const add = () => {
 
 <template>
   <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
-    <div class="text-sm sm:text-lg text-white">Xarajat, bo'limlari</div>
+    <div class="text-white">Xarajat, bo'limlari</div>
     <div>
       <AlertDialog>
         <AlertDialogTrigger>

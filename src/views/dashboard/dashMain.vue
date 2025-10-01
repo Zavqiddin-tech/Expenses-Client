@@ -55,6 +55,9 @@ onMounted(() => {
       <div v-if="data >= 0" class="h-full rounded-2xl bg-white/20 backdrop-blur-xs">
         <ProgressBar :progress="data" />
       </div>
+      <div v-else class="h-full rounded-2xl bg-white/20 backdrop-blur-xs">
+        <ProgressBar :progress="0" />
+      </div>
     </div>
   </div>
 </template>

@@ -59,9 +59,9 @@ const add = () => {
                   autocomplete="off"
                   v-model="state.password"
                 />
-                <div @click="toggle = !toggle" class="absolute right-3 top-2 cursor-pointer">
-                  <i class="fa-solid fa-eye" v-if="!toggle"></i>
-                  <i class="fa-solid fa-eye-slash" v-if="toggle"></i>
+                <div @click="toggle = !toggle" class="absolute right-3 top-1 cursor-pointer">
+                  <img v-if="!toggle" class="w-6" src="../assets/image/icon/eye.png" alt="" />
+                  <img v-if="toggle" class="w-6" src="../assets/image/icon/eye-slash.png" alt="" />
                 </div>
               </div>
             </FormControl>
