@@ -25,6 +25,21 @@ const { ListRentPayment } = storeToRefs(useStateStore())
 
 const { categoryId } = useRoute().params
 
+const date = [
+  'Yanvar',
+  'Fevral',
+  'Mart',
+  'Aprel',
+  'May',
+  'Iyun',
+  'Iyul',
+  'Avgust',
+  'Sentyabr',
+  'Oktyabr',
+  'Noyabr',
+  'Dekabr',
+]
+
 const state = reactive({
   name: '',
 })
@@ -65,22 +80,31 @@ onMounted(() => {
     >
       <div class="flex items-center gap-5 cursor-pointer">
         <div class="w-10 h-10 bg-white/20 rounded-xl flex justify-center items-center">
-          <i class="fa-solid fa-money-bill-transfer text-xl text-green-400"></i>
+          <i class="fa-solid fa-plug-circle-bolt text-xl text-sky-400"></i>
+          <i class=""></i>
         </div>
         <div>
           <div class="text-md font-light capitalize text-white">{{ item.title }}</div>
-          <div class="pt-1 font-medium text-green-400">
+          <div>
+            <div class="pt-2 flex items-center gap-1">
+              <i class="fa-solid fa-circle-check text-green-400"></i>
+              <span class="lowercase font-light text-green-300"
+                >{{ date[item.month] }} {{ item.year }}</span
+              >
+            </div>
+          </div>
+          <div class="pt-1 font-medium text-sky-400">
             + {{ item.amount.toLocaleString() }}
             <span class="text-white text-xs font-light">so'm</span>
           </div>
         </div>
       </div>
+      <div v-show="item.text" class="pt-1 text-sm font-extralight">{{ item.text }}</div>
+
       <div class="text-sm text-[#bec3c8]">
         {{ convertDate(item.createdAt, 1) }}
       </div>
-      <div>
-    
-      </div>
+      <div></div>
     </div>
   </div>
 </template>

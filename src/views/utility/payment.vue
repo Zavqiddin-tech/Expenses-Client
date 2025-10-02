@@ -10,6 +10,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -22,14 +31,30 @@ import { useApiStore } from '@/stores/api/api'
 import { useStateStore } from '@/stores/state'
 
 const { categoryId, name } = useRoute().params
+const date = [
+  'Yanvar',
+  'Fevral',
+  'Mart',
+  'Aprel',
+  'May',
+  'Iyun',
+  'Iyul',
+  'Avgust',
+  'Sentyabr',
+  'Oktyabr',
+  'Noyabr',
+  'Dekabr',
+]
 
 const api = useApiStore()
-const {ListRentPayment} = storeToRefs(useStateStore())
+const { ListRentPayment } = storeToRefs(useStateStore())
 
 const state = ref({
   amount: 0,
   title: '',
   text: '',
+  month: new Date().getMonth(),
+  year: new Date().getFullYear(),
 })
 
 const cancel = () => {
@@ -81,6 +106,39 @@ const add = () => {
                     </FormControl>
                   </FormItem>
                 </FormField>
+                <div class="flex">
+                  <FormField name="month">
+                    <FormItem class="w-6/12 mt-5 pr-2">
+                      <FormLabel>Oynni tanlang</FormLabel>
+                      <FormControl>
+                        <Select v-model="state.month">
+                          <SelectTrigger class="w-full">
+                            <SelectValue placeholder="Oyni tanlang" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>Oylar ro'yxati</SelectLabel>
+                              <SelectItem
+                                v-for="(item, index) in date"
+                                :key="index"
+                                :value="index"
+                                >{{ item }}</SelectItem
+                              >
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                    </FormItem>
+                  </FormField>
+                  <FormField name="year">
+                    <FormItem class="w-6/12 mt-5 pl-2">
+                      <FormLabel>Yilni kiriting</FormLabel>
+                      <FormControl>
+                        <Input type="number" autocomplete="off" v-model="state.year" />
+                      </FormControl>
+                    </FormItem>
+                  </FormField>
+                </div>
                 <FormField name="price">
                   <FormItem class="mt-5">
                     <FormLabel>To'lov summasi</FormLabel>
