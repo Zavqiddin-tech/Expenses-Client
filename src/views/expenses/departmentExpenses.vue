@@ -96,16 +96,14 @@ onMounted(() => {
             <AlertDialogHeader>
               <AlertDialogTitle>Xarajat bo'lim nomi, yangilash</AlertDialogTitle>
               <AlertDialogDescription>
-                <form @submit.prevent="update(item._id)">
-                  <FormField name="price">
-                    <FormItem class="mt-5">
-                      <FormLabel>Nomi</FormLabel>
-                      <FormControl>
-                        <Input type="text" autocomplete="off" v-model="state.name" />
-                      </FormControl>
-                    </FormItem>
-                  </FormField>
-                </form>
+                <FormField name="price">
+                  <FormItem class="mt-5">
+                    <FormLabel>Nomi</FormLabel>
+                    <FormControl>
+                      <Input type="text" autocomplete="off" v-model="state.name" />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>

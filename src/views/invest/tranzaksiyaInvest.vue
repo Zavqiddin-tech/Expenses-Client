@@ -48,8 +48,8 @@ const update = (payId) => {
         }
       })
     })
-    state.amount = 0
-    state.text = ""
+  state.amount = 0
+  state.text = ''
 }
 
 onMounted(() => {
@@ -95,24 +95,22 @@ onMounted(() => {
             <AlertDialogHeader>
               <AlertDialogTitle>Investitsiya, yangilash</AlertDialogTitle>
               <AlertDialogDescription>
-                <form @submit.prevent="update(item._id)">
-                  <FormField name="price">
-                    <FormItem class="mt-5">
-                      <FormLabel>Necha pul</FormLabel>
-                      <FormControl>
-                        <Input type="number" autocomplete="off" v-model="state.amount" />
-                      </FormControl>
-                    </FormItem>
-                  </FormField>
-                  <FormField name="price">
-                    <FormItem class="mt-5">
-                      <FormLabel>Ma'lumot</FormLabel>
-                      <FormControl>
-                        <Input type="text" autocomplete="off" v-model="state.text" />
-                      </FormControl>
-                    </FormItem>
-                  </FormField>
-                </form>
+                <FormField name="price">
+                  <FormItem class="mt-5">
+                    <FormLabel>Necha pul</FormLabel>
+                    <FormControl>
+                      <Input type="number" autocomplete="off" v-model="state.amount" />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <FormField name="price">
+                  <FormItem class="mt-5">
+                    <FormLabel>Ma'lumot</FormLabel>
+                    <FormControl>
+                      <Input type="text" autocomplete="off" v-model="state.text" />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>

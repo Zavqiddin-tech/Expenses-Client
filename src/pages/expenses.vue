@@ -54,16 +54,14 @@ const add = () => {
           <AlertDialogHeader>
             <AlertDialogTitle>Xarajat uchun bo'lim</AlertDialogTitle>
             <AlertDialogDescription>
-              <form @submit.prevent="add">
-                <FormField name="price">
-                  <FormItem class="mt-5">
-                    <FormLabel>Nom kiriting</FormLabel>
-                    <FormControl>
-                      <Input type="text" autocomplete="off" v-model="state.name" />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-              </form>
+              <FormField name="price">
+                <FormItem class="mt-5">
+                  <FormLabel>Nom kiriting</FormLabel>
+                  <FormControl>
+                    <Input type="text" autocomplete="off" v-model="state.name" />
+                  </FormControl>
+                </FormItem>
+              </FormField>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

@@ -117,32 +117,31 @@ onMounted(() => {
             <AlertDialogHeader>
               <AlertDialogTitle>Xarajat, yangilash</AlertDialogTitle>
               <AlertDialogDescription>
-                <form @submit.prevent="update(item._id)">
-                  <FormField name="title">
-                    <FormItem class="mt-5">
-                      <FormLabel>Nom kiriting</FormLabel>
-                      <FormControl>
-                        <Input type="text" autocomplete="off" v-model="state.title" />
-                      </FormControl>
-                    </FormItem>
-                  </FormField>
-                  <FormField name="body">
-                    <FormItem class="mt-5">
-                      <FormLabel>To'liqroq ma'lumot</FormLabel>
-                      <FormControl>
-                        <Input type="text" autocomplete="off" v-model="state.body" />
-                      </FormControl>
-                    </FormItem>
-                  </FormField>
-                  <FormField name="price">
-                    <FormItem class="mt-5">
-                      <FormLabel>Narxi</FormLabel>
-                      <FormControl>
-                        <Input type="number" autocomplete="off" v-model="state.amount" />
-                      </FormControl>
-                    </FormItem>
-                  </FormField>
-                  <!-- <FormField name="picture">
+                <FormField name="title">
+                  <FormItem class="mt-5">
+                    <FormLabel>Nom kiriting</FormLabel>
+                    <FormControl>
+                      <Input type="text" autocomplete="off" v-model="state.title" />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <FormField name="body">
+                  <FormItem class="mt-5">
+                    <FormLabel>To'liqroq ma'lumot</FormLabel>
+                    <FormControl>
+                      <Input type="text" autocomplete="off" v-model="state.body" />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <FormField name="price">
+                  <FormItem class="mt-5">
+                    <FormLabel>Narxi</FormLabel>
+                    <FormControl>
+                      <Input type="number" autocomplete="off" v-model="state.amount" />
+                    </FormControl>
+                  </FormItem>
+                </FormField>
+                <!-- <FormField name="picture">
                   <div class="pt-3 flex gap-5 flex-wrap">
                     <img
                       v-for="(image, index) in state.images"
@@ -171,7 +170,6 @@ onMounted(() => {
                     </FormControl>
                   </FormItem>
                 </FormField>  -->
-                </form>
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>

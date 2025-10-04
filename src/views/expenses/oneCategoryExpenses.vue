@@ -86,61 +86,53 @@ const add = () => {
           <AlertDialogHeader>
             <AlertDialogTitle>Xarajat haqida</AlertDialogTitle>
             <AlertDialogDescription>
-              <form @submit.prevent="add">
-                <FormField name="title">
-                  <FormItem class="mt-5">
-                    <FormLabel>Nom kiriting</FormLabel>
-                    <FormControl>
-                      <Input type="text" autocomplete="off" v-model="state.title" />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-                <FormField name="body">
-                  <FormItem class="mt-5">
-                    <FormLabel>To'liqroq ma'lumot</FormLabel>
-                    <FormControl>
-                      <Input type="text" autocomplete="off" v-model="state.body" />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-                <FormField name="price">
-                  <FormItem class="mt-5">
-                    <FormLabel>Narxi</FormLabel>
-                    <FormControl>
-                      <Input type="number" autocomplete="off" v-model="state.amount" />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-                <FormField name="picture">
-                  <div class="pt-3 flex gap-5 flex-wrap">
-                    <img
-                      v-for="(image, index) in images"
-                      :key="index"
-                      :src="image"
-                      alt="Preview Image"
-                      class="w-30 h-30 mt-5 object-cover rounded-2xl shadow-xl shadow-sky-300/50"
-                    />
-                  </div>
-                  <FormItem class="mt-5">
-                    <FormControl>
-                      <Label for="picture" class="w-35">
-                        <div
-                          class="p-3 border-2 border-dotted border-sky-300 rounded-xl cursor-pointer"
-                        >
-                          Rasm yuklash
-                        </div>
-                      </Label>
-                      <Input
-                        id="picture"
-                        type="file"
-                        multiple
-                        @change="handleFiles"
-                        class="hidden"
-                      />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-              </form>
+              <FormField name="title">
+                <FormItem class="mt-5">
+                  <FormLabel>Nom kiriting</FormLabel>
+                  <FormControl>
+                    <Input type="text" autocomplete="off" v-model="state.title" />
+                  </FormControl>
+                </FormItem>
+              </FormField>
+              <FormField name="body">
+                <FormItem class="mt-5">
+                  <FormLabel>To'liqroq ma'lumot</FormLabel>
+                  <FormControl>
+                    <Input type="text" autocomplete="off" v-model="state.body" />
+                  </FormControl>
+                </FormItem>
+              </FormField>
+              <FormField name="price">
+                <FormItem class="mt-5">
+                  <FormLabel>Narxi</FormLabel>
+                  <FormControl>
+                    <Input type="number" autocomplete="off" v-model="state.amount" />
+                  </FormControl>
+                </FormItem>
+              </FormField>
+              <FormField name="picture">
+                <div class="pt-3 flex gap-5 flex-wrap">
+                  <img
+                    v-for="(image, index) in images"
+                    :key="index"
+                    :src="image"
+                    alt="Preview Image"
+                    class="w-30 h-30 mt-5 object-cover rounded-2xl shadow-xl shadow-sky-300/50"
+                  />
+                </div>
+                <FormItem class="mt-5">
+                  <FormControl>
+                    <Label for="picture" class="w-35">
+                      <div
+                        class="p-3 border-2 border-dotted border-sky-300 rounded-xl cursor-pointer"
+                      >
+                        Rasm yuklash
+                      </div>
+                    </Label>
+                    <Input id="picture" type="file" multiple @change="handleFiles" class="hidden" />
+                  </FormControl>
+                </FormItem>
+              </FormField>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

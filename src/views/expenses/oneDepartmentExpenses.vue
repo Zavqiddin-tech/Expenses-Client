@@ -56,7 +56,7 @@ const add = () => {
           <AlertDialogHeader>
             <AlertDialogTitle>Kategoriya</AlertDialogTitle>
             <AlertDialogDescription>
-              <form @submit.prevent="add">
+             
                 <FormField name="price">
                   <FormItem class="mt-5">
                     <FormLabel>Nom kiriting</FormLabel>
@@ -65,7 +65,7 @@ const add = () => {
                     </FormControl>
                   </FormItem>
                 </FormField>
-              </form>
+         
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

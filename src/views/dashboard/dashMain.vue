@@ -9,7 +9,7 @@ const month = date.getMonth()
 import { useApiStore } from '@/stores/api/api'
 import { useStateStore } from '@/stores/state'
 const api = useApiStore()
-const { balans } = storeToRefs(useStateStore()) 
+const { balans } = storeToRefs(useStateStore())
 
 const data = ref(0)
 const money = ref({ kirim: 0, chiqim: 0 })
@@ -19,16 +19,22 @@ onMounted(() => {
       url: `report/this-month?year=${year}&month=${month}`,
     })
     .then((res) => {
-      data.value = (res.data.chiqim / res.data.kirim) * 100
       money.value = res.data
       balans.value.thisMonthExpenses = res.data.chiqim
       balans.value.thisMonth = month
+    })
+  api
+    .getAxios({
+      url: 'report/percent',
+    })
+    .then((res) => {
+      data.value = res.data
     })
 })
 </script>
 
 <template>
-  <div class="flex items-stretch  flex-wrap -ml-2 -mr-2">
+  <div class="flex items-stretch flex-wrap -ml-2 -mr-2">
     <div class="w-6/12 p-2 lg:w-4/12">
       <div class="h-full p-5 rounded-2xl bg-white/20 backdrop-blur-xs">
         <div class="w-12 h-12 flex justify-center items-center rounded-full bg-black/30">

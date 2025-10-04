@@ -35,7 +35,7 @@ const add = () => {
   api
     .postAxios({
       url: `invest/create/${id}`,
-      data: {...state.value}
+      data: { ...state.value },
     })
     .then((res) => {
       oneInvest.value = [res.data.pay, ...oneInvest.value]
@@ -56,7 +56,7 @@ onMounted(() => {
 
 <template>
   <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
-    <div class=" capitalize text-white">{{ name }}</div>
+    <div class="capitalize text-white">{{ name }}</div>
     <div>
       <AlertDialog>
         <AlertDialogTrigger>
@@ -66,24 +66,22 @@ onMounted(() => {
           <AlertDialogHeader>
             <AlertDialogTitle>Investitsiya qilish</AlertDialogTitle>
             <AlertDialogDescription>
-              <form @submit.prevent="add">
-                <FormField name="price">
-                  <FormItem class="mt-5">
-                    <FormLabel>Necha pul</FormLabel>
-                    <FormControl>
-                      <Input type="number" autocomplete="off" v-model="state.amount" />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-                <FormField name="price">
-                  <FormItem class="mt-5">
-                    <FormLabel>Ma'lumot</FormLabel>
-                    <FormControl>
-                      <Input type="text" autocomplete="off" v-model="state.text" />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
-              </form>
+              <FormField name="price">
+                <FormItem class="mt-5">
+                  <FormLabel>Necha pul</FormLabel>
+                  <FormControl>
+                    <Input type="number" autocomplete="off" v-model="state.amount" />
+                  </FormControl>
+                </FormItem>
+              </FormField>
+              <FormField name="price">
+                <FormItem class="mt-5">
+                  <FormLabel>Ma'lumot</FormLabel>
+                  <FormControl>
+                    <Input type="text" autocomplete="off" v-model="state.text" />
+                  </FormControl>
+                </FormItem>
+              </FormField>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

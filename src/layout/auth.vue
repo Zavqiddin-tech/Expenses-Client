@@ -38,41 +38,40 @@ const add = () => {
           <div class="text-2xl font-medium">Authorization</div>
         </div>
       </div>
-      <form @submit.prevent="add">
-        <FormField name="userName">
-          <FormItem>
-            <FormLabel>Username</FormLabel>
-            <FormControl>
-              <Input type="text" autocomplete="off" v-model="state.userName" />
-            </FormControl>
 
-            <FormMessage />
-          </FormItem>
-        </FormField>
-        <FormField name="password">
-          <FormItem class="mt-5">
-            <FormLabel>Password</FormLabel>
-            <FormControl>
-              <div class="relative">
-                <Input
-                  :type="`${toggle ? 'text' : 'password'}`"
-                  autocomplete="off"
-                  v-model="state.password"
-                />
-                <div @click="toggle = !toggle" class="absolute right-3 top-1 cursor-pointer">
-                  <img v-if="!toggle" class="w-6" src="../assets/image/icon/eye.png" alt="" />
-                  <img v-if="toggle" class="w-6" src="../assets/image/icon/eye-slash.png" alt="" />
-                </div>
+      <FormField name="userName">
+        <FormItem>
+          <FormLabel>Username</FormLabel>
+          <FormControl>
+            <Input type="text" autocomplete="off" v-model="state.userName" />
+          </FormControl>
+
+          <FormMessage />
+        </FormItem>
+      </FormField>
+      <FormField name="password">
+        <FormItem class="mt-5">
+          <FormLabel>Password</FormLabel>
+          <FormControl>
+            <div class="relative">
+              <Input
+                :type="`${toggle ? 'text' : 'password'}`"
+                autocomplete="off"
+                v-model="state.password"
+              />
+              <div @click="toggle = !toggle" class="absolute right-3 top-1 cursor-pointer">
+                <img v-if="!toggle" class="w-6" src="../assets/image/icon/eye.png" alt="" />
+                <img v-if="toggle" class="w-6" src="../assets/image/icon/eye-slash.png" alt="" />
               </div>
-            </FormControl>
+            </div>
+          </FormControl>
 
-            <FormMessage />
-          </FormItem>
-        </FormField>
-        <div class="flex justify-center">
-          <Button type="submit" class="w-full mt-5 cursor-pointer"> Submit </Button>
-        </div>
-      </form>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+      <div class="flex justify-center">
+        <Button type="submit" class="w-full mt-5 cursor-pointer"> Submit </Button>
+      </div>
     </div>
   </div>
 </template>
