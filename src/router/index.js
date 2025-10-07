@@ -49,7 +49,7 @@ const router = createRouter({
           meta: { secure: true },
         },
         {
-          path: '/utility/category/:categoryId/:name',
+          path: '/utility/client/:clientId/:name',
           component: () => import('../views/utility/payment.vue'),
           meta: { secure: true },
         },

@@ -22,6 +22,7 @@ import {
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { Switch } from '@/components/ui/switch'
 import ListPayment from './list/listPayment.vue'
 
 import { ref } from 'vue'
@@ -30,7 +31,7 @@ import { useRoute } from 'vue-router'
 import { useApiStore } from '@/stores/api/api'
 import { useStateStore } from '@/stores/state'
 
-const { categoryId, name } = useRoute().params
+const { clientId, name } = useRoute().params
 const date = [
   'Yanvar',
   'Fevral',
@@ -48,11 +49,11 @@ const date = [
 
 const api = useApiStore()
 const { ListRentPayment } = storeToRefs(useStateStore())
-
 const state = ref({
   amount: 0,
   title: '',
   text: '',
+  debt: false,
   month: new Date().getMonth(),
   year: new Date().getFullYear(),
 })
@@ -63,9 +64,10 @@ const cancel = () => {
   state.value.text = ''
 }
 const add = () => {
+  console.log(state.value);
   api
     .postAxios({
-      url: `rentpayment/create/${categoryId}`,
+      url: `rentpayment/create/${clientId}`,
       data: state.value,
     })
     .then((res) => {
@@ -74,6 +76,7 @@ const add = () => {
   state.value.amount = 0
   state.value.title = ''
   state.value.text = ''
+  state.value.debt = false 
 }
 </script>
 
@@ -88,7 +91,7 @@ const add = () => {
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>{{ name }} uchun to'lov</AlertDialogTitle>
+              <AlertDialogTitle>{{ name }} to'lov jadvali</AlertDialogTitle>
               <AlertDialogDescription>
                 <FormField name="title">
                   <FormItem class="mt-5">
@@ -139,9 +142,13 @@ const add = () => {
                     </FormItem>
                   </FormField>
                 </div>
+                <div class="mt-5 flex items-center gap-5">
+                  <div class=" font-medium text-orange-500">Qarzdorlik !!!</div>
+                  <Switch v-model="state.debt" class=" scale-120" />
+                </div>
                 <FormField name="price">
                   <FormItem class="mt-5">
-                    <FormLabel>To'lov summasi</FormLabel>
+                    <FormLabel>Summa</FormLabel>
                     <FormControl>
                       <Input type="number" autocomplete="off" v-model="state.amount" />
                     </FormControl>

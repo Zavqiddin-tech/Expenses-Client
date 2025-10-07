@@ -1,13 +1,12 @@
 <script setup>
+import Hero from '@/components/layout/hero.vue';
 import Balans from '@/views/utility/balans.vue';
-import Category from '@/views/utility/category.vue';
+import Category from '@/views/utility/client.vue';
 
 </script>
 
 <template>
-	<div class="pb-10 text-lg">
-		Kommunal & to'lovlar
-	</div>
+	<Hero />
 	<Balans />
 	<Category />
 </template>

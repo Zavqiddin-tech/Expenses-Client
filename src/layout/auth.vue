@@ -70,7 +70,7 @@ const add = () => {
         </FormItem>
       </FormField>
       <div class="flex justify-center">
-        <Button type="submit" class="w-full mt-5 cursor-pointer"> Submit </Button>
+        <Button @click="add" class="w-full mt-5 cursor-pointer"> Submit </Button>
       </div>
     </div>
   </div>
