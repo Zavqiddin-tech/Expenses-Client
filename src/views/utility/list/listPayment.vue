@@ -32,23 +32,6 @@ const state = reactive({
   name: '',
 })
 
-const update = (id) => {
-  api
-    .patchAxios({
-      url: `rentpayment/${id}`,
-      data: state,
-    })
-    .then((res) => {
-      /* invest.value = invest.value.map((e) => {
-        if (e._id == res.data._id) {
-          return res.data
-        } else {
-          return e
-        }
-      }) */
-    })
-}
-
 onMounted(() => {
   api
     .getAxios({

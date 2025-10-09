@@ -31,7 +31,7 @@ const state = reactive({
   title: '',
   body: '',
   pictures: [],
-  amount: 0,
+  amount: '',
 })
 const parse = (data) => {
   state.title = data.title
@@ -54,7 +54,7 @@ const update = (id) => {
         }
       })
     })
-  state.amount = 0
+  state.amount = ''
   state.text = ''
 }
 
@@ -110,7 +110,7 @@ onMounted(() => {
           <AlertDialogTrigger>
             <i
               @click="parse(item)"
-              class="fa-solid fa-pen-to-square text-xl text-white cursor-pointer"
+              class="fa-solid fa-pen-to-square pr-8 text-white cursor-pointer"
             ></i>
           </AlertDialogTrigger>
           <AlertDialogContent>
@@ -141,35 +141,6 @@ onMounted(() => {
                     </FormControl>
                   </FormItem>
                 </FormField>
-                <!-- <FormField name="picture">
-                  <div class="pt-3 flex gap-5 flex-wrap">
-                    <img
-                      v-for="(image, index) in state.images"
-                      :key="index"
-                      :src="image"
-                      alt="Preview Image"
-                      class="w-30 h-30 mt-5 object-cover rounded-2xl shadow-xl shadow-sky-300/50"
-                    />
-                  </div>
-                  <FormItem class="mt-5">
-                    <FormControl>
-                      <Label for="picture" class="w-35">
-                        <div
-                          class="p-3 border-2 border-dotted border-sky-300 rounded-xl cursor-pointer"
-                        >
-                          Rasm yuklash
-                        </div>
-                      </Label>
-                      <Input
-                        id="picture"
-                        type="file"
-                        multiple
-                        @change="handleFiles"
-                        class="hidden"
-                      />
-                    </FormControl>
-                  </FormItem>
-                </FormField>  -->
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
@@ -189,7 +160,7 @@ onMounted(() => {
         </AlertDialog>
         <AlertDialog>
           <AlertDialogTrigger>
-            <i class="fa-solid fa-trash text-xl text-red-500 cursor-pointer"></i>
+            <i class="fa-solid fa-trash cursor-pointer"></i>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>

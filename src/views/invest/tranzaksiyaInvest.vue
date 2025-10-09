@@ -26,7 +26,7 @@ const { oneInvest } = storeToRefs(useStateStore())
 
 const state = reactive({
   text: '',
-  amount: 0,
+  amount: '',
 })
 const parse = (text, amount) => {
   state.text = text
@@ -48,7 +48,7 @@ const update = (payId) => {
         }
       })
     })
-  state.amount = 0
+  state.amount = ''
   state.text = ''
 }
 

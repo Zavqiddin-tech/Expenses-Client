@@ -19,7 +19,7 @@ onMounted(() => {
 
 <template>
   <div v-if="balans.amount >= 0" class="text-left">
-    <div class="pt-5 font-light">Kommunal balans</div>
+    <div class="font-light">Kommunal balans</div>
     <div class="pt-1">
       <span class="font-semibold text-4xl pr-2">{{ balans.amount.toLocaleString() }}</span>
       <span class="font-light">so'm</span>

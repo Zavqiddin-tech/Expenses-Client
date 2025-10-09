@@ -53,6 +53,11 @@ const router = createRouter({
           component: () => import('../views/utility/payment.vue'),
           meta: { secure: true },
         },
+        {
+          path: '/utility/listwithdraw',
+          component: () => import('../views/utility/list/listWithdraw.vue'),
+          meta: { secure: true },
+        },
       ],
     },
     {
@@ -65,9 +70,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.secure) {
-    if (to.meta.admin) {
-      useAuthStore().checkAdmin()
-    }
     useAuthStore().checkUser()
   }
   next()

@@ -11,7 +11,7 @@ const api = useApiStore()
 const state = reactive({
   title: '',
   body: '',
-  amount: 0,
+  amount: '',
 })
 const images = reactive([])
 

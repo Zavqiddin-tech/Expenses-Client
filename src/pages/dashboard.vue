@@ -2,6 +2,7 @@
 import Hero from '@/components/layout/hero.vue';
 import Balans from '@/views/dashboard/balans.vue'
 import DashMain from '@/views/dashboard/dashMain.vue'
+import Tranzaksiya from '@/views/dashboard/tranzaksiya.vue';
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import DashMain from '@/views/dashboard/dashMain.vue'
     </div>
     <!-- body -->
     <DashMain />
+    <Tranzaksiya />
   </div>
 </template>
 

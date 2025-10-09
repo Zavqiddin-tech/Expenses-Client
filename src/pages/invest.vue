@@ -20,7 +20,7 @@ import { storeToRefs } from 'pinia'
 import { useApiStore } from '@/stores/api/api'
 import { useStateStore } from '@/stores/state'
 const api = useApiStore()
-const { user, invest } = storeToRefs(useStateStore())
+const { invest } = storeToRefs(useStateStore())
 
 const state = ref({
   name: '',
@@ -43,7 +43,7 @@ const add = () => {
 </script>
 
 <template>
-  <div v-if="user.role === 'admin' || user.role === 'director'">
+  <div>
     <div class="p-4 text-xl font-medium flex justify-between items-center text-white">
       <div class="text-white">Investitsiya, bo'limlari</div>
       <div>

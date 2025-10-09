@@ -28,7 +28,7 @@ const state = reactive({
   title: '',
   body: '',
   pictures: [],
-  amount: 0,
+  amount: '',
 })
 const images = reactive([])
 const handleFiles = (event) => {
@@ -45,7 +45,7 @@ const cancel = () => {
   state.title = ''
   state.body = ''
   state.pictures = []
-  state.amount = 0
+  state.amount = ''
 }
 const add = () => {
   formData = new FormData()
@@ -66,7 +66,7 @@ const add = () => {
   state.title = ''
   state.body = ''
   state.pictures = []
-  state.amount = 0
+  state.amount = ''
   formData.delete('title')
   formData.delete('body')
   formData.delete('amount')

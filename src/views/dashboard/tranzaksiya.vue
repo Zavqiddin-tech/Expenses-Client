@@ -18,7 +18,6 @@ onMounted(() => {
     })
     .then((res) => {
       expenses.value = [...res.data]
-     
     })
 })
 </script>

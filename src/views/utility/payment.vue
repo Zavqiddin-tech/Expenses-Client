@@ -50,7 +50,7 @@ const date = [
 const api = useApiStore()
 const { ListRentPayment } = storeToRefs(useStateStore())
 const state = ref({
-  amount: 0,
+  amount: '',
   title: '',
   text: '',
   debt: false,
@@ -59,12 +59,11 @@ const state = ref({
 })
 
 const cancel = () => {
-  state.value.amount = 0
+  state.value.amount = ''
   state.value.title = ''
   state.value.text = ''
 }
 const add = () => {
-  console.log(state.value);
   api
     .postAxios({
       url: `rentpayment/create/${clientId}`,
@@ -73,10 +72,10 @@ const add = () => {
     .then((res) => {
       ListRentPayment.value = [res.data, ...ListRentPayment.value]
     })
-  state.value.amount = 0
+  state.value.amount = ''
   state.value.title = ''
   state.value.text = ''
-  state.value.debt = false 
+  state.value.debt = false
 }
 </script>
 
@@ -143,8 +142,8 @@ const add = () => {
                   </FormField>
                 </div>
                 <div class="mt-5 flex items-center gap-5">
-                  <div class=" font-medium text-orange-500">Qarzdorlik !!!</div>
-                  <Switch v-model="state.debt" class=" scale-120" />
+                  <div class="font-medium text-orange-500">Qarzdorlik !!!</div>
+                  <Switch v-model="state.debt" class="scale-120" />
                 </div>
                 <FormField name="price">
                   <FormItem class="mt-5">
